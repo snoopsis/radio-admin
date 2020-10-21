@@ -16,9 +16,9 @@
           </div>
          
     </div>
-<table class="table table-hover table-bordered mt-3">
-  <thead>
-    <tr>
+<table class="table table-hover table-bordered table-sm mt-3">
+  <thead style="font-size: 14px;">
+    <tr class="table-secondary">
       <th scope="col">Nome</th>
       <th scope="col">Empresa</th>
       <th scope="col">Rank</th>
@@ -32,7 +32,7 @@
       <th scope="col">Nok Cel</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody style="font-size: 14px;">
   <?php foreach($data['chegadas'] as $chegada) : ?>
     <tr>
       <td><?php echo $chegada->nome; ?></td>
