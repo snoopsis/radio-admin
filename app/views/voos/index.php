@@ -6,7 +6,7 @@
         <div class="row">
            <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
               <form action="<?php echo URLROOT; ?>/voos/busca" method="post">
-              <div class="input-group mb-3">
+                <div class="input-group mb-3">
                  <input type="text" class="form-control" name="busca" placeholder="DD/MM/AAAA" type="submit" aria-describedby="basic-addon2">
                  <div class="input-group-append">
                   <button class="input-group-text" type="submit" id="basic-addon2"><i class="fa fa-search"></i></button>

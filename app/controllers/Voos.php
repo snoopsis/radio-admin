@@ -54,7 +54,8 @@ class Voos extends Controller{
       // Validated
       if($this->vooModel->updateVoo($data)){
        flash('post_message', 'Voo Atualizado');
-       redirect('voos/index');
+      //  redirect('voos/index');
+      $this->view('voos/editar', $data);
       } else {
         // Load with no errors
        $this->view('voos/editar', $data);
