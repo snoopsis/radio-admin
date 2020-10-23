@@ -9,7 +9,7 @@
 
    // Find all arrivals
    public function getChegadas(){
-     $this->db->query('SELECT * FROM chegada LIMIT 20');
+     $this->db->query('SELECT * FROM chegada ORDER BY id DESC LIMIT 20');
 
      $results = $this->db->resultSet();
 

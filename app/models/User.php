@@ -55,7 +55,7 @@
    }
 
    public function getAllUsers(){
-     $this->db->query('SELECT * FROM users');
+     $this->db->query('SELECT * FROM users ORDER BY id DESC');
 
      $results = $this->db->resultSet();
 

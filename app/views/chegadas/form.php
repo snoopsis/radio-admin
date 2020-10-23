@@ -172,7 +172,7 @@ function sendMail(nome, empresa, nacionalidade, cpf, nascimento, email, celular,
     // Send a POST request
     axios({
     method: 'post',
-    url: 'http://157.230.177.222:6010/novoMembro',
+    url: "https://api.migueldias.net/novoMembro",
     data: {
       nome: nome,
       empresa: empresa,

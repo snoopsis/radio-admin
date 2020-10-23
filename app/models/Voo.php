@@ -9,7 +9,7 @@
 
    // Lista todos os voos
    public function getVoos(){
-      $this->db->query('SELECT * FROM voos WHERE user_id = :user_id LIMIT 20');
+      $this->db->query('SELECT * FROM voos WHERE user_id = :user_id ORDER BY id DESC LIMIT 20');
 
       $this->db->bind(':user_id', $_SESSION['user_id']);
 
