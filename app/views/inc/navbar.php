@@ -17,7 +17,8 @@
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo URLROOT; ?>">Inicio</a>
 					</li>
-
+          <?php endif; ?>
+          <?php if($_SESSION['user_id'] == 0 || $_SESSION['user_id'] == 2) : ?>
           <li class="nav-item">
 						<a class="nav-link" href="<?php echo URLROOT; ?>/chegadas">Chegadas</a>
 					</li>

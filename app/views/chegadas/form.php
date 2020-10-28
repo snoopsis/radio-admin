@@ -14,7 +14,7 @@
   <body class="bg-light">
     <div class="container">
         <div class="py-5 text-center">
-          <img class="d-block mx-auto mb-4" src="https://lh3.googleusercontent.com/proxy/KQYweF-QC4xM4G3o2Ezofnv_pmNhuvOq__3wNdyGAkbngVKwmfQoBGQYyF3vfZiKYXLwSivWNp71XjJ_BfF77jtvIzYz4A3JNV3cWXJ38YBppG5rI4D6sRrCf23SAPm5btxE" alt="" width="120" height="72">
+          <img class="d-block mx-auto mb-4" src="https://lh3.googleusercontent.com/proxy/wE5kVl-R9r-y8gLO4jaG9RlCp92OM8OBhvk1AhyzxXcOLAyOl9ZLZhOBhphiBiZz8n1OXgb8Iyl123DqXN37abhhYk79uQKRoX5-SXXCjwtyydgfgVN34_ygxLQWy2DM4gSh" alt="" width="120" height="72">
           <h2>Skandi Buzios</h2>
           <p class="lead">Formulario de Chegada / Arrival Form</p>
         </div>
@@ -25,7 +25,7 @@
             <form method="post">
               <div class="row">
                 <div class="col-sm-12 mb-3">
-                  <label for="firstName">Nome / Name</label>
+                  <label for="firstName">Nome Completo / Full Name</label>
                   <input type="text" class="form-control" id="nome">
                 </div>
               </div>
@@ -61,7 +61,7 @@
               <div class="row">
                 <div class="col-sm-12 mb-3">
                   <label for="firstName">Nascimento / Date of Birth</label>
-                  <input type="text" class="form-control" id="nascimento">
+                  <input type="date" class="form-control" id="nascimento">
                 </div>
               </div>
 
@@ -172,7 +172,7 @@ function sendMail(nome, empresa, nacionalidade, cpf, nascimento, email, celular,
     // Send a POST request
     axios({
     method: 'post',
-    url: "https://api.migueldias.net/novoMembro",
+    url: "https://api.migueldias.net/buzios/novoMembro",
     data: {
       nome: nome,
       empresa: empresa,

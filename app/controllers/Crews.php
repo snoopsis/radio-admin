@@ -21,11 +21,11 @@ class Crews extends Controller{
     ];
 
     // Check for owner
-    if($_SESSION['user_id'] != 0){
-    redirect('contatos');
-    } 
-
-    $this->view('crews/index', $data);
+    if($_SESSION['user_id'] == 0 || $_SESSION['user_id'] == 2){
+      $this->view('crews/index', $data);
+      } else {
+        redirect('contatos');
+      }
   }
 
   public function editar($id){

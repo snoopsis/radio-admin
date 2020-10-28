@@ -16,13 +16,13 @@ class Chegadas extends Controller{
           'chegadas' => $chegadas
         ];
 
-        // Check for owner
-        if($_SESSION['user_id'] != 0){
-        redirect('chegadas');
-        } 
-
-        $this->view('chegadas/index', $data);
+      // Check for owner
+    if($_SESSION['user_id'] == 2 || $_SESSION['user_id'] == 0){
+      $this->view('chegadas/index', $data);
+      } else {
+        redirect('contatos');
       }
+    }
 
 
         public function delete($id){
