@@ -40,7 +40,13 @@ class Crews extends Controller{
        'cabin' => trim($_POST['cabin']),
        'country' => trim($_POST['country']),
        'company' => trim($_POST['company']),
-       'funcao' => trim($_POST['funcao'])
+       'funcao' => trim($_POST['funcao']),
+       'cpf' => trim($_POST['cpf']),
+       'dob' => trim($_POST['dob']),
+       'celular' => trim($_POST['celular']),
+       'email' => trim($_POST['email']),
+       'embarque' => trim($_POST['embarque']),
+       'desembarque' => trim($_POST['desembarque'])
      ];
   
       // Validated
@@ -68,7 +74,13 @@ class Crews extends Controller{
          'cabin' => $crew->cabin,
          'country' => $crew->country,
          'company' => $crew->company,
-         'funcao' => $crew->funcao
+         'funcao' => $crew->funcao,
+         'cpf' => $crew->cpf,
+         'dob' => $crew->dob,
+         'celular' => $crew->celular,
+         'email' => $crew->email,
+         'embarque' => $crew->embarque,
+         'desembarque' => $crew->desembarque
        ];
       }
   
@@ -104,12 +116,24 @@ class Crews extends Controller{
        'country' => trim($_POST['country']),
        'company' => trim($_POST['company']),
        'funcao' => trim($_POST['funcao']),
+       'cpf' => trim($_POST['cpf']),
+       'dob' => trim($_POST['dob']),
+       'celular' => trim($_POST['celular']),
+       'email' => trim($_POST['email']),
+       'embarque' => trim($_POST['embarque']),
+       'desembarque' => trim($_POST['desembarque']),
        'name_err' => '',
        'sispat_err' => '',
        'cabin_err' => '',
        'country_err' => '',
        'company_err' => '',
-       'funcao_err' => ''
+       'funcao_err' => '',
+       'cpf_err' => '',
+       'dob_err' => '',
+       'celular_err' => '',
+       'email_err' => '',
+       'embarque_err' => '',
+       'desembarque_err' => ''
      ];
 
       // Check for owner
@@ -170,7 +194,13 @@ class Crews extends Controller{
          'cabin' => '',
          'country' => '',
          'company' => '',
-         'funcao' => ''
+         'funcao' => '',
+         'cpf' => '',
+         'dob' => '',
+         'celular' => '',
+         'email' => '',
+         'embarque' => '',
+         'desembarque' => ''
        ];
       }
   

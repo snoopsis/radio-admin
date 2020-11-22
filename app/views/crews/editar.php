@@ -38,6 +38,42 @@
   </div>
   </div>
 
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label>Cpf:</label>
+    <input type="text" class="form-control" placeholder="Cpf" name="cpf" value="<?php echo $data['cpf']; ?>">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label>DOB:</label>
+    <input type="text" class="form-control" placeholder="DOB" name="dob" value="<?php echo $data['dob']; ?>">
+  </div>
+  </div>
+
+  <div class="form-row">
+  <div class="form-group col-md-6">
+    <label>Embarque:</label>
+    <input type="text" class="form-control" placeholder="Embarque" name="embarque" value="<?php echo $data['embarque']; ?>">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label>Desembarque:</label>
+    <input type="text" class="form-control" placeholder="Desembarque" name="desembarque" value="<?php echo $data['desembarque']; ?>">
+  </div>
+  </div>
+
+  <div class="form-row">
+  <div class="form-group col-md-6">
+    <label>Celular:</label>
+    <input type="text" class="form-control" placeholder="Celular" name="celular" value="<?php echo $data['celular']; ?>">
+  </div>
+
+  <div class="form-group col-md-6">
+    <label>Email:</label>
+    <input type="text" class="form-control" placeholder="Email" name="email" value="<?php echo $data['email']; ?>">
+  </div>
+  </div>
+
 <div class="row mb-3 mt-2">
 <div class="col">
 <button class="btn btn-success" type="submit" name="atualiza" formaction="<?php echo URLROOT; ?>/crews/editar/<?php echo $data['id']; ?>">Atualizar <i class="fa fa-floppy-o"></i></button>

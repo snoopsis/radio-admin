@@ -31,7 +31,7 @@
    }
 
     public function novoCrew($data){
-      $this->db->query('INSERT INTO crew (name, sispat, cabin, country, company, funcao) VALUES(:name, :sispat, :cabin, :country, :company, :funcao)');
+      $this->db->query('INSERT INTO crew (name, sispat, cabin, country, company, funcao, cpf, dob, celular, email, embarque, desembarque) VALUES(:name, :sispat, :cabin, :country, :company, :funcao, :cpf, :dob, :celular, :email, :embarque, :desembarque)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':sispat', $data['sispat']);
@@ -39,7 +39,12 @@
       $this->db->bind(':country', $data['country']);
       $this->db->bind(':company', $data['company']);
       $this->db->bind(':funcao', $data['funcao']);
-  
+      $this->db->bind(':cpf', $data['cpf']);
+      $this->db->bind(':dob', $data['dob']);
+      $this->db->bind(':celular', $data['celular']);
+      $this->db->bind(':email', $data['email']);
+      $this->db->bind(':embarque', $data['embarque']);
+      $this->db->bind(':desembarque', $data['desembarque']);
   
       // Execute
       if($this->db->execute()){
@@ -51,7 +56,7 @@
 
     // Atualiza um Crew
     public function updateCrew($data){
-      $this->db->query('UPDATE crew SET name = :name, sispat = :sispat, cabin = :cabin, country = :country, company = :company, funcao = :funcao WHERE id = :id');
+      $this->db->query('UPDATE crew SET name = :name, sispat = :sispat, cabin = :cabin, country = :country, company = :company, funcao = :funcao, cpf = :cpf, dob = :dob, celular = :celular, email = :email, embarque = :embarque, desembarque = :desembarque WHERE id = :id');
       // Bind values
       $this->db->bind(':id', $data['id']);
       $this->db->bind(':name', $data['name']);
@@ -60,6 +65,12 @@
       $this->db->bind(':country', $data['country']);
       $this->db->bind(':company', $data['company']);
       $this->db->bind(':funcao', $data['funcao']);
+      $this->db->bind(':cpf', $data['cpf']);
+      $this->db->bind(':dob', $data['dob']);
+      $this->db->bind(':celular', $data['celular']);
+      $this->db->bind(':email', $data['email']);
+      $this->db->bind(':embarque', $data['embarque']);
+      $this->db->bind(':desembarque', $data['desembarque']);
   
       // Execute
       if($this->db->execute()){
