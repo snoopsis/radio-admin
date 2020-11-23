@@ -17,7 +17,7 @@ class Chegadas extends Controller{
         ];
 
       // Check for owner
-    if($_SESSION['user_id'] == 2 || $_SESSION['user_id'] == 0){
+    if($_SESSION['user_id'] == 0){
       $this->view('chegadas/index', $data);
       } else {
         redirect('contatos');

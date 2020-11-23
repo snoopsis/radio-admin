@@ -21,7 +21,7 @@ class Crews extends Controller{
     ];
 
     // Check for owner
-    if($_SESSION['user_id'] == 0 || $_SESSION['user_id'] == 2){
+    if($_SESSION['user_id'] == 0){
       $this->view('crews/index', $data);
       } else {
         redirect('contatos');
