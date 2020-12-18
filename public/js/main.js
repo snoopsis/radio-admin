@@ -1,4 +1,9 @@
+// Pega o dia de hoje
+const today = moment().format("DD/MM/YYYY");
+
+// Funcao para horario de voo como alerta
 function saidaDeVoo() {
+  // Chama API de voos e verifica se nao existe nenhum problema
   fetch("https://api.migueldias.net/buzios/voos")
     .then(function(response) {
       if (response.status !== 200) {
@@ -8,41 +13,24 @@ function saidaDeVoo() {
         return;
       }
 
-      // Examine the text in the response
+      // Usa a resposta da API para analisar se existem resultados
+      // Caso existam Voos na data de hoje lanca um alerta
       response.json().then(function(data) {
-        const hoje = data.filter(voo => voo.data === "17/12/2020");
+        const hoje = data.filter(voo => voo.data === today);
 
         var output = "";
 
-        // for (var x = 0; x < hoje.length; x++) {
-        //   output += "<h1>" + hoje[x].saida_aero + "</h1>";
-        // }
-
-        if (hoje[0].saida_aero.length > 0) {
-          output += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-          Aeronave ${hoje[0].prefixo} decolou as <strong>${hoje[0].saida_aero}</strong> 
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>`;
-        }
-
-        if (hoje[1].saida_aero.length > 0) {
-          output += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-          Aeronave ${hoje[1].prefixo} decolou as <strong>${hoje[1].saida_aero}</strong> 
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>`;
-        }
-
-        if (hoje[2].saida_aero.length > 0) {
-          output += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-          Aeronave ${hoje[2].prefixo} decolou as <strong>${hoje[2].saida_aero}</strong> 
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>`;
+        // Faz a repeticao para o numero de voos existente
+        for (var x = 0; x < hoje.length; x++) {
+          // Se existir horario de voo enviar alerta
+          if (hoje[x].saida_aero !== "") {
+            output += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Aeronave ${hoje[x].prefixo} decolou as <strong>${hoje[x].saida_aero}</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>`;
+          }
         }
 
         document.getElementById("users").innerHTML = output;
@@ -53,6 +41,7 @@ function saidaDeVoo() {
     });
 }
 
+// Chama API de voos e verifica se nao existe nenhum problema
 fetch("https://api.migueldias.net/buzios/voos")
   .then(function(response) {
     if (response.status !== 200) {
@@ -62,21 +51,16 @@ fetch("https://api.migueldias.net/buzios/voos")
       return;
     }
 
-    // Examine the text in the response
+    // Procura Voos de Hoje mediante resposta da API
     response.json().then(function(data) {
-      const hoje = data.filter(voo => voo.data === "17/12/2020");
-      // tem voos hoje?
-      if (hoje.length > 0) {
-        if (hoje[0].saida_aero === "" || hoje[1].saida_aero === "") {
-          // Procura a cada 7 segundos hora de saida
-          setInterval(() => {
-            saidaDeVoo();
-          }, 7000);
-        } else {
-          console.log("existe horario de saida");
-        }
-      } else {
-        console.log("Hoje nao tem voos!");
+      const hoje = data.filter(voo => voo.data === today);
+      // Loop que verifica se tem voos hoje?
+      for (var x = 0; x < hoje.length; x++) {
+        // Procura a cada 7 segundos hora de saida
+        // Caso existam Voos
+        setInterval(() => {
+          saidaDeVoo();
+        }, 7000);
       }
     });
   })
