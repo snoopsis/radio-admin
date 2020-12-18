@@ -2,15 +2,16 @@
 
 class Pages extends Controller{
   public function __construct(){
-    if(!isLoggedIn()){
-      redirect('users/login');
-    }
 
     $this->userModel = $this->model('User');
     $this->chegadaModel = $this->model('Chegada');
   }
 
   public function index(){
+    if(!isLoggedIn()){
+      redirect('users/login');
+    }
+
     $chegadas = $this->chegadaModel->getChegadas();
     $users = $this->userModel->getAllUsers();
 
@@ -30,9 +31,11 @@ class Pages extends Controller{
   }
 
   public function about(){
+    $users = $this->userModel->getAllUsers();
     $data = [
       'title' => 'About',
-      'description' => 'App to share posts with other users'
+      'description' => 'App to share posts with other users',
+      'users'=> $users
     ];
 
    $this->view('pages/about', $data); 

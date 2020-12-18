@@ -59,6 +59,7 @@ class Users extends Controller{
           }
         }
 
+        // Validate CPF
         if(empty($data['cpf'])){
           $data['cpf_err'] = 'Por favor insira o seu CPF';
         }
