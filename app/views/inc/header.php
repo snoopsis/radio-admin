@@ -12,6 +12,7 @@
   integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
   crossorigin="anonymous"
 ></script>
+
   <title><?php echo SITENAME; ?></title>
 </head>
 <body class="d-flex flex-column min-vh-100">

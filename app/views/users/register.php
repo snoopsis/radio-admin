@@ -20,11 +20,11 @@
 </div>
 
 
-<div class="form-group">
+<!-- <div class="form-group">
 <label for="cpf">Cpf ou LPNA: <sup>*</sup></label>
 <input type="text" name="cpf" class="form-control form-control-lg <?php echo (!empty($data['cpf_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['cpf']; ?>">
 <span class="invalid-feedback"><?php echo $data['cpf_err']; ?></span>
-</div>
+</div> -->
 
 <div class="form-group">
 <label for="password">Senha: <sup>*</sup></label>

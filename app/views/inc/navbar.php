@@ -22,15 +22,16 @@
           <li class="nav-item">
 						<a class="nav-link" href="<?php echo URLROOT; ?>/chegadas">Chegadas</a>
 					</li>
-
-          <li class="nav-item">
-						<a class="nav-link" href="<?php echo URLROOT; ?>/crews">Crew</a>
-					</li>
         
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo URLROOT; ?>/rotinas">Rotinas</a>
 					</li>
            <?php endif; ?>
+
+           <li class="nav-item">
+						<a class="nav-link" href="<?php echo URLROOT; ?>/crews">Crew</a>
+					</li>
+          
 					<li class="nav-item">
 							<a class="nav-link" href="<?php echo URLROOT; ?>/contatos">Telefones</a>
 					 </li>

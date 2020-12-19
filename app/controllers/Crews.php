@@ -19,13 +19,7 @@ class Crews extends Controller{
       'description' => 'Listagem de Crew Offshore',
       'crews' => $crews
     ];
-
-    // Check for owner
-    if($_SESSION['user_id'] == 0){
-      $this->view('crews/index', $data);
-      } else {
-        redirect('contatos');
-      }
+    $this->view('crews/index', $data);
   }
 
   public function editar($id){
@@ -62,11 +56,7 @@ class Crews extends Controller{
          // Get existing crew from model
       $crew = $this->crewModel->getCrewById($id);
 
-         // Check for owner
-      if($_SESSION['user_id'] != 0){
-        redirect('crews');
-        } 
-        
+            
        $data = [
          'id' => $id,
          'name' => $crew->name,
@@ -136,11 +126,7 @@ class Crews extends Controller{
        'desembarque_err' => ''
      ];
 
-      // Check for owner
-      if($_SESSION['user_id'] != 0){
-        redirect('contatos');
-        } 
-  
+    
      // Validate nome
      if(empty($data['name'])){
        $data['name_err'] = 'Por favor insira o Nome';

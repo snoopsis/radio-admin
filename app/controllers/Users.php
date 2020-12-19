@@ -18,12 +18,10 @@ class Users extends Controller{
         'email' => trim($_POST['email']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
-        'cpf' => trim($_POST['cpf']),
         'name_err' => '',
         'email_err' => '',
         'password_err' => '',
         'confirm_password_err' => '',
-        'cpf_err' => ''
         ];
 
       // Validate email
@@ -59,11 +57,6 @@ class Users extends Controller{
           }
         }
 
-        // Validate CPF
-        if(empty($data['cpf'])){
-          $data['cpf_err'] = 'Por favor insira o seu CPF';
-        }
-
         // Make sure errors are empty
         if(empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])){
           // Validated
@@ -73,10 +66,10 @@ class Users extends Controller{
 
         // Register User
        if($this->userModel->register($data)){
-         flash('register_success', 'Registro completo aguarde ativação da conta');
+         flash('register_success', 'Registro completo pode fazer login');
         redirect('users/login');
        } else {
-         die('something went wrong');
+         die('algo deu errado');
        }
     
         } else {
@@ -89,7 +82,6 @@ class Users extends Controller{
       $data=[
       'name' => '',
       'email' => '',
-      'cpf' => '',
       'password' => '',
       'confirm_password' => '',
       'name_err' => '',

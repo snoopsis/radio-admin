@@ -9,7 +9,9 @@
 
    // Lista todos os Crews
    public function getCrews(){
-     $this->db->query('SELECT * FROM crew LIMIT 20');
+     $this->db->query('SELECT * FROM crew WHERE user_id = :user_id ORDER BY id DESC LIMIT 20');
+
+     $this->db->bind(':user_id', $_SESSION['user_id']);
 
      $results = $this->db->resultSet();
 
@@ -31,7 +33,7 @@
    }
 
     public function novoCrew($data){
-      $this->db->query('INSERT INTO crew (name, sispat, cabin, country, company, funcao, cpf, dob, celular, email, embarque, desembarque) VALUES(:name, :sispat, :cabin, :country, :company, :funcao, :cpf, :dob, :celular, :email, :embarque, :desembarque)');
+      $this->db->query('INSERT INTO crew (name, sispat, cabin, country, company, funcao, cpf, dob, celular, email, embarque, desembarque, user_id) VALUES(:name, :sispat, :cabin, :country, :company, :funcao, :cpf, :dob, :celular, :email, :embarque, :desembarque, :user_id)');
       // Bind values
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':sispat', $data['sispat']);
@@ -45,6 +47,7 @@
       $this->db->bind(':email', $data['email']);
       $this->db->bind(':embarque', $data['embarque']);
       $this->db->bind(':desembarque', $data['desembarque']);
+      $this->db->bind(':user_id', $_SESSION['user_id']);
   
       // Execute
       if($this->db->execute()){
