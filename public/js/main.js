@@ -1,10 +1,13 @@
 // Pega o dia de hoje
 const today = moment().format("DD/MM/YYYY");
 
+const uid = document.getElementById("uid").textContent;
+console.log(uid);
+
 // Funcao para horario de voo como alerta
 function saidaDeVoo() {
   // Chama API de voos e verifica se nao existe nenhum problema
-  fetch("https://api.migueldias.net/buzios/voos")
+  fetch("https://api.migueldias.net/buzios/voos/decolagem")
     .then(function(response) {
       if (response.status !== 200) {
         console.log(
@@ -16,7 +19,9 @@ function saidaDeVoo() {
       // Usa a resposta da API para analisar se existem resultados
       // Caso existam Voos na data de hoje lanca um alerta
       response.json().then(function(data) {
-        const hoje = data.filter(voo => voo.data === today);
+        const hoje = data.filter(
+          voo => voo.data === today && voos.user_id === uid
+        );
 
         var output = "";
 
@@ -42,7 +47,7 @@ function saidaDeVoo() {
 }
 
 // Chama API de voos e verifica se nao existe nenhum problema
-fetch("https://api.migueldias.net/buzios/voos")
+fetch("https://api.migueldias.net/buzios/voos/decolagem")
   .then(function(response) {
     if (response.status !== 200) {
       console.log(
@@ -53,7 +58,9 @@ fetch("https://api.migueldias.net/buzios/voos")
 
     // Procura Voos de Hoje mediante resposta da API
     response.json().then(function(data) {
-      const hoje = data.filter(voo => voo.data === today);
+      const hoje = data.filter(
+        voo => voo.data === today && voos.user_id === uid
+      );
       // Loop que verifica se tem voos hoje?
       for (var x = 0; x < hoje.length; x++) {
         // Procura a cada 7 segundos hora de saida

@@ -51,6 +51,7 @@
         <li class="nav-item">
             <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">Logout <i class="fa fa-arrow-right"></i></a>
           </li>
+          <div id="uid" style="display:none;"><?php echo $_SESSION['user_id'] ?></div>
           <?php else: ?>
           <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
