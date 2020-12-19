@@ -2,7 +2,6 @@
 const today = moment().format("DD/MM/YYYY");
 
 const uid = document.getElementById("uid").textContent;
-console.log(uid);
 
 // Funcao para horario de voo como alerta
 function saidaDeVoo() {
@@ -20,7 +19,7 @@ function saidaDeVoo() {
       // Caso existam Voos na data de hoje lanca um alerta
       response.json().then(function(data) {
         const hoje = data.filter(
-          voo => voo.data === today && voo.user_id === uid
+          voo => voo.data === today && voo.user_id === parseInt(uid)
         );
 
         var output = "";
@@ -59,8 +58,9 @@ fetch("https://api.migueldias.net/buzios/voos/decolagem")
     // Procura Voos de Hoje mediante resposta da API
     response.json().then(function(data) {
       const hoje = data.filter(
-        voo => voo.data === today && voo.user_id === uid
+        voo => voo.data === today && voo.user_id === parseInt(uid)
       );
+
       // Loop que verifica se tem voos hoje?
       for (var x = 0; x < hoje.length; x++) {
         // Procura a cada 7 segundos hora de saida
