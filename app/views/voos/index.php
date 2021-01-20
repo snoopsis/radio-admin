@@ -44,7 +44,8 @@
       <div class="col">
       <h6><?php echo $voo->prefixo; ?></h6>
       <h6><?php echo $voo->modelo; ?></h6>
-      <h6><?php echo $voo->companhiaAerea; ?></h6>
+      <img src="<?php echo $voo->companhiaAerea; ?>" width="80">
+
       </div>
       </div>
       <p class="mt-3 mb-4"><?php echo $voo->troca_pax; ?></p>
