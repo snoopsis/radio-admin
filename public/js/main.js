@@ -22,20 +22,21 @@ function saidaDeVoo() {
           voo => voo.data === today && voo.user_id === parseInt(uid)
         );
 
-        var output = "";
+        var output = `<div class="container">`;
 
         // Faz a repeticao para o numero de voos existente
         for (var x = 0; x < hoje.length; x++) {
           // Se existir horario de voo enviar alerta
           if (hoje[x].saida_aero !== "") {
-            output += `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            output += `<div class="col"><div class="alert alert-danger alert-dismissible fade show" role="alert">
             Aeronave ${hoje[x].prefixo} decolou as <strong>${hoje[x].saida_aero}</strong> 
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>`;
+          </div></div>`;
           }
         }
+        output += "</div>";
 
         document.getElementById("users").innerHTML = output;
       });

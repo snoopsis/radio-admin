@@ -59,7 +59,7 @@
 													<label for="numero">
 														Numero:
 													</label>
-														<input type="text" name="numero" class="form-control m-input <?php echo (!empty($data['numero_err'])) ? 'is-invalid' : ''; ?>" placeholder="Numero">
+														<input type="text" name="numero" class="form-control m-input <?php echo (!empty($data['numero_err'])) ? 'is-invalid' : ''; ?>" placeholder="Numero" disabled>
 														<span class="invalid-feedback"><?php echo $data['numero_err']; ?></span>
 												</div>
 

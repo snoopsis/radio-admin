@@ -25,37 +25,35 @@
              </div>
     </div>
 
-  <div class="card-deck mb-3 text-center">
-  <?php foreach($data['voos'] as $voo) : ?>
-  <div class="col-sm-12 col-md-6 col-lg-3">
-    <div class="card mb-3 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal"><?php echo $voo->procedencia; ?></h4>
-      </div>
-      <div class="card-body">
-      <span class="badge badge-primary" style="font-size:18px;padding:5px;"><?php echo $voo->data; ?></span>
-      </p><span class="badge badge-secondary" style="font-size:14px;"><?php echo $voo->obs; ?></span></p>
-      <div class="row">
-      <div class="col">
-      <h6><?php echo $voo->horario; ?></h6>
-      <h6><?php echo $voo->empresa_tt; ?></h6>
-      <h6><?php echo $voo->numero; ?></h6>
-      </div>
-      <div class="col">
-      <h6><?php echo $voo->prefixo; ?></h6>
-      <h6><?php echo $voo->modelo; ?></h6>
-      <img src="<?php echo $voo->companhiaAerea; ?>" width="80">
+  
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">DATA</th>
+      <th scope="col">HORA</th>
+      <th scope="col">ROTA</th>
+      <th scope="col">PREFIXO</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
 
-      </div>
-      </div>
-      <p class="mt-3 mb-4"><?php echo $voo->troca_pax; ?></p>
-        <?php if($voo->user_id == $_SESSION['user_id']) : ?>
+  <?php foreach($data['voos'] as $voo) : ?>
+    <tr>
+      <td><?php echo $voo->data; ?></td>
+      <td><?php echo $voo->horario; ?></td>
+      <td><?php echo $voo->procedencia; ?></td>
+      <td><?php echo $voo->prefixo; ?></td>
+      <td>
+      <?php if($voo->user_id == $_SESSION['user_id']) : ?>
         <a href="<?php echo URLROOT; ?>/voos/editar/<?php echo $voo->id; ?>"><button type="button" class="btn btn-sm btn-success btn-block">Editar</button></a>
         <?php endif; ?>
-      </div>
-    </div>
-  </div>
+        </td>
+    </tr>
     <?php endforeach; ?> 
+
+  </tbody>
+</table>
        </div>
 
     

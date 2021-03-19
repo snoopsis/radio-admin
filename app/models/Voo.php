@@ -42,7 +42,8 @@
       $this->db->bind(':procedencia', $data['procedencia']);
       $this->db->bind(':empresa_tt', $data['empresa_tt']);
       $this->db->bind(':troca_pax', $data['troca_pax']);
-      $this->db->bind(':numero', $data['numero']);
+      // $this->db->bind(':numero', $data['numero']);
+      $this->db->bind(':numero', rand(10000, 100000));
       $this->db->bind(':prefixo', $data['prefixo']);
       $this->db->bind(':modelo', $data['modelo']);
       $this->db->bind(':companhiaAerea', $data['companhiaAerea']);

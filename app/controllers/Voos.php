@@ -132,7 +132,7 @@ class Voos extends Controller{
        'procedencia_err' => '',
        'empresa_err' => '',
        'troca_pax_err' => '',
-       'numero_err' => '',
+      //  'numero_err' => '',
        'prefixo_err' => '',
        'modelo_err' => '',
        'companhiaAerea_err' => ''
@@ -169,9 +169,9 @@ class Voos extends Controller{
         }
 
         // Validate title
-        if(empty($data['numero'])){
-          $data['numero_err'] = 'Por favor insira o Numero';
-        }
+        // if(empty($data['numero'])){
+        //   $data['numero_err'] = 'Por favor insira o Numero';
+        // }
      
          // Validate body
          if(empty($data['prefixo'])){
@@ -190,7 +190,7 @@ class Voos extends Controller{
   
   
      // Make sure no errors
-     if(empty($data['obs_err']) && empty($data['data_err']) && empty($data['horario_err']) && empty($data['procedencia_err']) && empty($data['empresa_err']) && empty($data['troca_pax_err']) && empty($data['numero_err']) && empty($data['prefixo_err']) && empty($data['modelo_err']) && empty($data['companhiaAerea_err'])){
+     if(empty($data['obs_err']) && empty($data['data_err']) && empty($data['horario_err']) && empty($data['procedencia_err']) && empty($data['empresa_err']) && empty($data['troca_pax_err']) && empty($data['prefixo_err']) && empty($data['modelo_err']) && empty($data['companhiaAerea_err'])){
       // Validated
       if($this->vooModel->novoVoo($data)){
        flash('post_message', 'Voo Adicionado');
