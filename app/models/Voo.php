@@ -9,9 +9,13 @@
 
    // Lista todos os voos
    public function getVoos(){
-      $this->db->query('SELECT * FROM voos WHERE user_id = :user_id ORDER BY id DESC LIMIT 20');
+      // $this->db->query('SELECT * FROM voos WHERE procedencia LIKE "%SKBU%" ORDER BY id DESC LIMIT 20');
 
-      $this->db->bind(':user_id', $_SESSION['user_id']);
+      $this->db->query('SELECT * FROM voos WHERE procedencia LIKE :um ORDER BY id DESC LIMIT 20');
+
+      $novaUM = "%".$_SESSION['um']."%";
+
+      $this->db->bind(':um', $novaUM);
 
      $results = $this->db->resultSet();
 

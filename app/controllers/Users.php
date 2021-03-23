@@ -16,12 +16,14 @@ class Users extends Controller{
       $data=[
         'name' => trim($_POST['name']),
         'email' => trim($_POST['email']),
+        'um' => trim($_POST['um']),
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
         'name_err' => '',
         'email_err' => '',
         'password_err' => '',
         'confirm_password_err' => '',
+        'um_err' => '',
         ];
 
       // Validate email
@@ -38,6 +40,11 @@ class Users extends Controller{
       if(empty($data['name'])){
       $data['name_err'] = "Por favor insira o Nome";
       }    
+
+      // Validate UM
+      if(empty($data['um'])){
+        $data['um_err'] = "Por favor insira unidade maritima";
+        }  
       
       // Validate password
       if(empty($data['password'])){
@@ -58,7 +65,7 @@ class Users extends Controller{
         }
 
         // Make sure errors are empty
-        if(empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])){
+        if(empty($data['email_err']) && empty($data['name_err']) && empty($data['um_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])){
           // Validated
 
            // Hash Password
@@ -81,10 +88,12 @@ class Users extends Controller{
       // Init data
       $data=[
       'name' => '',
+      'um' => '',
       'email' => '',
       'password' => '',
       'confirm_password' => '',
       'name_err' => '',
+      'um_err' => '',
       'email_err' => '',
       'password_err' => '',
       'confirm_password_err' => ''
@@ -164,6 +173,7 @@ class Users extends Controller{
     $_SESSION['user_id'] = $user->id;
     $_SESSION['email'] = $user->email;
     $_SESSION['name'] = $user->name;
+    $_SESSION['um'] = $user->um;
     redirect('pages/index');
   }
 
@@ -171,6 +181,7 @@ class Users extends Controller{
     unset($_SESSION['user_id']);
     unset($_SESSION['user_email']);
     unset($_SESSION['user_name']);
+    unset($_SESSION['user_um']);
     session_destroy();
     redirect('users/login');
   }

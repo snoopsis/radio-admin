@@ -45,7 +45,7 @@
       <td><?php echo $voo->procedencia; ?></td>
       <td><?php echo $voo->prefixo; ?></td>
       <td>
-      <?php if($voo->user_id == $_SESSION['user_id']) : ?>
+      <?php if(stripos($voo->procedencia, $_SESSION['um']) !== FALSE) : ?>
         <a href="<?php echo URLROOT; ?>/voos/editar/<?php echo $voo->id; ?>"><button type="button" class="btn btn-sm btn-success btn-block">Editar</button></a>
         <?php endif; ?>
         </td>
