@@ -40,10 +40,11 @@
       $this->db->query("INSERT INTO voos (obs, data, horario, procedencia, empresa_tt, troca_pax, numero, prefixo, modelo, companhiaAerea, user_id) VALUES(:obs, :data, :horario, :procedencia, :empresa_tt, :troca_pax, :numero, :prefixo, :modelo, :companhiaAerea, :user_id)");
 
       // Bind values
-      $this->db->bind(':obs', $data['obs']);
+      // $this->db->bind(':obs', $data['obs']);
+      $this->db->bind(':obs', "*Previsto");
       $this->db->bind(':data', $data['data']);
       $this->db->bind(':horario', $data['horario']);
-      $this->db->bind(':procedencia', $data['procedencia']);
+      $this->db->bind(':procedencia', $data['procedencia']." / ".$_SESSION['um']);
       $this->db->bind(':empresa_tt', $data['empresa_tt']);
       $this->db->bind(':troca_pax', $data['troca_pax']);
       // $this->db->bind(':numero', $data['numero']);

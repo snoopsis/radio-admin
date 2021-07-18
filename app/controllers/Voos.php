@@ -139,9 +139,9 @@ class Voos extends Controller{
      ];
   
         // Validate title
-        if(empty($data['obs'])){
-          $data['obs_err'] = 'Por favor insira status';
-        }
+        // if(empty($data['obs'])){
+        //   $data['obs_err'] = 'Por favor insira status';
+        // }
       
           // Validate body
           if(empty($data['data'])){

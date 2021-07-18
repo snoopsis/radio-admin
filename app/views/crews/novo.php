@@ -8,8 +8,10 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Nome</label>
-      <input type="text" class="form-control <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" placeholder="Nome" name="name">
+      <div class="autoComplete_wrapper">
+      <input type="text" class="form-control <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" placeholder="Nome" name="name" id="autoComplete" dir="ltr" spellcheck="false" autocorrect="off" autocomplete="off" autocapitalize="off">
       <span class="invalid-feedback"><?php echo $data['name_err']; ?>
+      </div>
     </div>
   <div class="form-group col-md-6">
     <label>Sispat:</label>

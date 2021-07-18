@@ -13,6 +13,28 @@
   crossorigin="anonymous"
 ></script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({dateFormat: "dd/mm/yy"});
+  } );
+  </script>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js">
+    </script>
+    <script>
+     $( function() {
+    $( "#timepicker" ).timepicker({
+      timeFormat: 'HH:mm',
+      startTime: '06:00'
+    });
+  } );
+    </script>
+
   <title><?php echo SITENAME; ?></title>
 </head>
 <body class="d-flex flex-column min-vh-100">

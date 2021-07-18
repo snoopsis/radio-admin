@@ -15,29 +15,29 @@
 				<ul class="navbar-nav mr-auto">
 				<?php if($_SESSION['user_id'] == 0) : ?>
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo URLROOT; ?>">Inicio</a>
+						<a class="nav-link" href="<?php echo URLROOT; ?>">INICIO</a>
 					</li>
           <?php endif; ?>
           <?php if($_SESSION['user_id'] == 0) : ?>
           <li class="nav-item">
-						<a class="nav-link" href="<?php echo URLROOT; ?>/chegadas">Chegadas</a>
+						<a class="nav-link" href="<?php echo URLROOT; ?>/chegadas">CHEGADAS</a>
 					</li>
         
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo URLROOT; ?>/rotinas">Rotinas</a>
+						<a class="nav-link" href="<?php echo URLROOT; ?>/rotinas">ROTINAS</a>
 					</li>
            <?php endif; ?>
 
            <li class="nav-item">
-						<a class="nav-link" href="<?php echo URLROOT; ?>/crews">Crew</a>
+						<a class="nav-link" href="<?php echo URLROOT; ?>/crews">CREW</a>
 					</li>
           
 					<li class="nav-item">
-							<a class="nav-link" href="<?php echo URLROOT; ?>/contatos">Telefones</a>
+							<a class="nav-link" href="<?php echo URLROOT; ?>/contatos">TELEFONES</a>
 					 </li>
      
 					<li class="nav-item">
-						<a class="nav-link" href="<?php echo URLROOT; ?>/voos">Voos</a>
+						<a class="nav-link" href="<?php echo URLROOT; ?>/voos">VOOS</a>
 					</li>
             <?php endif; ?>
 		

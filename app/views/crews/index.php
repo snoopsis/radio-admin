@@ -7,7 +7,18 @@
           <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
             <form action="<?php echo URLROOT; ?>/crews/busca" method="post">
             <div class="input-group mb-3">
-                 <input type="text" class="form-control" name="busca" placeholder="Procurar Tripulante" type="submit" aria-describedby="basic-addon2">
+            <div class="autoComplete_wrapper">
+            <input
+        id="autoComplete"
+        type="search"
+        dir="ltr"
+        spellcheck="false"
+        autocorrect="off"
+        autocomplete="off"
+        autocapitalize="off"
+        name="busca"
+      />
+      </div>
                  <div class="input-group-append">
                   <button class="input-group-text" type="submit" id="basic-addon2"><i class="fa fa-search"></i></button>
                  </div>
