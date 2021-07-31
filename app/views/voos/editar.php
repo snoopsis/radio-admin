@@ -130,9 +130,9 @@
                    <div class="col-md-6 mb-3">
 										 <div class="input-group mb-3">
 					  	         	<div class="input-group-prepend">
-						    				<span class="input-group-text" id="inputGroup-sizing-default">Pouso</span>
+						    				<span class="input-group-text" id="inputGroup-sizing-default">Pouso<i class="fa fa-clock-o" aria-hidden="true" style="margin-left: 5px;" id="hora-pouso"></i></span>
 						            </div>
-												<input type="text" name="pouso" class="form-control m-input <?php echo (!empty($data['pouso_err'])) ? 'is-invalid' : ''; ?>" placeholder="Pouso" value="<?php if(!empty($data['pouso'])){echo $data['pouso'];} ?>">
+												<input type="text" name="pouso" id="pouso" class="form-control m-input <?php echo (!empty($data['pouso_err'])) ? 'is-invalid' : ''; ?>" placeholder="Pouso" value="<?php if(!empty($data['pouso'])){echo $data['pouso'];} ?>">
 												<span class="invalid-feedback"><?php echo $data['pouso_err']; ?></span>
 									</div>
 								</div>
@@ -189,9 +189,9 @@
 				<div class="col-md-6 mb-3">
 					  <div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<span class="input-group-text" id="inputGroup-sizing-default">Decolagem</span>
+								<span class="input-group-text" id="inputGroup-sizing-default">Decolagem<i class="fa fa-clock-o" aria-hidden="true" style="margin-left: 5px;" id="hora-decolagem"></i></span>
 							</div>
-							<input type="text" name="decolagem" class="form-control m-input <?php echo (!empty($data['decolagem_err'])) ? 'is-invalid' : ''; ?>" placeholder="Decolagem" value="<?php if(!empty($data['decolagem'])){echo $data['decolagem'];} ?>">
+							<input type="text" name="decolagem" id="decolagem" class="form-control m-input <?php echo (!empty($data['decolagem_err'])) ? 'is-invalid' : ''; ?>" placeholder="Decolagem" value="<?php if(!empty($data['decolagem'])){echo $data['decolagem'];} ?>">
 							<span class="invalid-feedback"><?php echo $data['decolagem_err']; ?></span>
 				  	 </div>
 				   </div>

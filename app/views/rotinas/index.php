@@ -33,10 +33,6 @@
   <label class="custom-control-label" for="pob_nok">Pob Nok</label>
 </div>
    <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="customSwitch2" name="rotinas[]" value="pob_pb">
-    <label class="custom-control-label" for="customSwitch2">Pob PB</label>
-   </div>
-   <div class="custom-control custom-switch">
     <input type="checkbox" class="custom-control-input" id="customSwitch3" name="rotinas[]" value="previa_pob">
     <label class="custom-control-label" for="customSwitch3">Previa Pob</label>
    </div>
@@ -72,6 +68,10 @@
   </div>
     <div class="col">
     <h6 class="text-center">00/12</h6>
+    <div class="custom-control custom-switch">
+      <input type="checkbox" class="custom-control-input" id="customSwitch25" name="rotinas[]" value="bodi">
+      <label class="custom-control-label" for="customSwitch25">Bodi</label>
+    </div>
     <div class="custom-control custom-switch">
       <input type="checkbox" class="custom-control-input" id="customSwitch10" name="rotinas[]" value="inf_mat">
       <label class="custom-control-label" for="customSwitch10">Inf Matutino</label>
@@ -121,6 +121,10 @@
       <input type="checkbox" class="custom-control-input" id="customSwitch20" name="rotinas[]" value="email_decolagem">
       <label class="custom-control-label" for="customSwitch20">E-Decola</label>
     </div>
+    <div class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="customSwitch2" name="rotinas[]" value="pob_pb">
+    <label class="custom-control-label" for="customSwitch2">Pob PB</label>
+   </div>
     </div>
     </div>
 

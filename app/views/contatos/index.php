@@ -7,7 +7,18 @@
            <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
            <form action="<?php echo URLROOT; ?>/contatos/busca" method="post">
                 <div class="input-group mb-3">
-                 <input type="text" class="form-control" name="busca" placeholder="Procurar Unidade Maritima" aria-label="Recipient's username" type="submit" aria-describedby="basic-addon2">
+                <div class="autoComplete_wrapper">
+            <input
+        id="autoComplete"
+        type="search"
+        dir="ltr"
+        spellcheck="false"
+        autocorrect="off"
+        autocomplete="off"
+        autocapitalize="off"
+        name="busca"
+      />
+      </div>
                  <div class="input-group-append">
                   <button class="input-group-text" type="submit" id="basic-addon2"><i class="fa fa-search"></i></button>
                  </div>
@@ -25,7 +36,7 @@
              </div>
     </div>
 
-  <div class="card-deck mb-3 text-center">
+  <!-- <div class="card-deck mb-3 text-center">
   <?php foreach($data['contatos'] as $contato) : ?>
   <div class="col-sm-12 col-md-6 col-lg-3">
     <div class="card mb-3 shadow-sm">
@@ -45,7 +56,7 @@
     </div>
   </div>
     <?php endforeach; ?> 
-       </div>
+       </div> -->
 
     
 									

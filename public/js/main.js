@@ -75,3 +75,31 @@ function saidaDeVoo() {
 //   .catch(function(err) {
 //     console.log("Fetch Error :-S", err);
 //   });
+
+if (window.location.pathname.match("/voos/editar/")) {
+  function mudarHorarioPouso() {
+    var pouso = document.getElementById("pouso");
+    pouso.value = `${moment().format("HH")}:${moment().format("mm")}`;
+  }
+
+  function pouso() {
+    var el = document.getElementById("hora-pouso");
+
+    el.addEventListener("click", mudarHorarioPouso);
+  }
+
+  pouso();
+
+  function mudarHorarioDecolagem() {
+    var decolagem = document.getElementById("decolagem");
+    decolagem.value = `${moment().format("HH")}:${moment().format("mm")}`;
+  }
+
+  function decolagem() {
+    var el = document.getElementById("hora-decolagem");
+
+    el.addEventListener("click", mudarHorarioDecolagem);
+  }
+
+  decolagem();
+}
