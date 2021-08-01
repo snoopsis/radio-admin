@@ -36,7 +36,7 @@
              </div>
     </div>
 
-  <!-- <div class="card-deck mb-3 text-center">
+  <div class="card-deck mb-3 text-center">
   <?php foreach($data['contatos'] as $contato) : ?>
   <div class="col-sm-12 col-md-6 col-lg-3">
     <div class="card mb-3 shadow-sm">
@@ -56,7 +56,7 @@
     </div>
   </div>
     <?php endforeach; ?> 
-       </div> -->
+       </div>
 
     
 									
