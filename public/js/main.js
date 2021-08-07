@@ -103,3 +103,66 @@ if (window.location.pathname.match("/voos/editar/")) {
 
   decolagem();
 }
+
+const filtra = async () => {
+  const hoje = moment().format("DD/MM/YYYY");
+  const ontem = moment()
+    .add(-1, "Days")
+    .format("DD/MM/YYYY");
+  const anteOntem = moment()
+    .add(-2, "Days")
+    .format("DD/MM/YYYY");
+  const amanha = moment()
+    .add(+1, "Days")
+    .format("DD/MM/YYYY");
+  const doisDias = moment()
+    .add(+2, "Days")
+    .format("DD/MM/YYYY");
+  const tresDias = moment()
+    .add(+2, "Days")
+    .format("DD/MM/YYYY");
+  const quatroDias = moment()
+    .add(+2, "Days")
+    .format("DD/MM/YYYY");
+
+  const response = await axios("https://api.migueldias.net/buzios/voos");
+  var listaVoos = [];
+
+  if (document.getElementById("datepicker").value.length !== 0) {
+    listaVoos = await response.data.filter(
+      i => i.data === `${document.getElementById("datepicker").value}`
+    );
+  }
+  if (document.getElementById("datepicker").value.length === 0) {
+    listaVoos = await response.data.filter(
+      i =>
+        i.data === hoje ||
+        i.data === ontem ||
+        i.data === anteOntem ||
+        i.data === amanha ||
+        i.data === doisDias ||
+        i.data === tresDias ||
+        i.data === quatroDias
+    );
+  }
+
+  var html = "";
+  var voo = document.getElementById("tabela");
+  voo.innerHTML = "";
+
+  for (x = 0; x < listaVoos.length; x++) {
+    html += `<tr>`;
+    html += `<td>${listaVoos[x].data}</td>`;
+    html += `<td>${listaVoos[x].horario}</td>`;
+    html += `<td>${listaVoos[x].procedencia}</td>`;
+    html += `<td>${listaVoos[x].prefixo}</td>`;
+    html += `<td><a href=https://radio.migueldias.net/voos/editar/${listaVoos[x].id}  target="_blank"><i class="fa fa-edit fa-2x"></i></a></td>`;
+    html += `</tr>`;
+  }
+
+  if (voo) {
+    voo.innerHTML = html;
+  }
+};
+
+filtra();

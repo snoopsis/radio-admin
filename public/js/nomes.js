@@ -1,4 +1,7 @@
-if (window.location.pathname === "/crews") {
+if (
+  window.location.pathname === "/crews" ||
+  window.location.pathname === "/crews/busca"
+) {
   // Make a request for a user with a given ID
   axios
     .get("https://api.migueldias.net/buzios/crewnames")
@@ -7,7 +10,7 @@ if (window.location.pathname === "/crews") {
       const autoCompleteJS = new autoComplete({
         placeHolder: "Nome...",
         data: {
-          src: response.data,
+          src: response.data.map(i => i.name),
           cache: true
         },
         resultItem: {

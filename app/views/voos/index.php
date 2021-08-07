@@ -5,14 +5,14 @@
 <div class="contaier m-3">
         <div class="row">
            <div class="col-sm-12 col-md-6 col-lg-6 mt-3">
-              <form action="<?php echo URLROOT; ?>/voos/busca" method="post">
+              
                 <div class="input-group mb-3">
                  <input type="text" class="form-control" name="busca" placeholder="DD/MM/AAAA" type="submit" aria-describedby="basic-addon2" id="datepicker">
                  <div class="input-group-append">
-                  <button class="input-group-text" type="submit" id="basic-addon2"><i class="fa fa-search"></i></button>
+                  <button class="input-group-text" id="basic-addon2" onclick="filtra()"><i class="fa fa-search"></i></button>
                  </div>
                 </div>
-              </form>
+            
             </div>
          
             <div class="col-sm-12 col-md-6 col-lg-6 pull-right">
@@ -36,21 +36,7 @@
       <th scope="col">#</th>
     </tr>
   </thead>
-  <tbody>
-
-  <?php foreach($data['voos'] as $voo) : ?>
-    <tr>
-      <td><?php echo $voo->data; ?></td>
-      <td><?php echo $voo->horario; ?></td>
-      <td><?php echo $voo->procedencia; ?></td>
-      <td><?php echo $voo->prefixo; ?></td>
-      <td>
-      <?php if(stripos($voo->procedencia, $_SESSION['um']) !== FALSE) : ?>
-        <a href="<?php echo URLROOT; ?>/voos/editar/<?php echo $voo->id; ?>"><button type="button" class="btn btn-sm btn-success btn-block">Editar</button></a>
-        <?php endif; ?>
-        </td>
-    </tr>
-    <?php endforeach; ?> 
+  <tbody id="tabela">
 
   </tbody>
 </table>
