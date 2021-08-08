@@ -102,7 +102,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="inputGroup-sizing-default">Emp Aerea</span>
 									</div>
-										<input type="text" name="companhiaAerea" class="form-control m-input <?php echo (!empty($data['companhiaAerea_err'])) ? 'is-invalid' : ''; ?>" placeholder="Companhia Aerea" value="<?php echo $data['companhiaAerea']; ?>">
+										<input type="text" name="companhiaAerea" class="form-control m-input <?php echo (!empty($data['companhiaAerea_err'])) ? 'is-invalid' : ''; ?>" placeholder="Companhia Aerea" value="<?php echo $data['companhiaAerea']; ?>" id="datatriger">
 										<span class="invalid-feedback"><?php echo $data['companhiaAerea_err']; ?></span>
 								</div>
 							</div>
@@ -202,6 +202,30 @@
 								<button class="btn btn-success" type="submit" name="atualiza" formaction="<?php echo URLROOT; ?>/voos/editar/<?php echo $data['id']; ?>">Atualizar <i class="fa fa-floppy-o"></i></button>
 							</div>
 							<div class="col">
+							 <!-- Botao de embarque -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+			data-target="#botaoEmbarque"
+			onclick="chamaVooEmbarque()"
+    >
+      Embarque
+    </button>
+							</div>
+							<div class="col">
+							 <!-- Botao de desembarque -->
+    <button
+      type="button"
+      class="btn btn-secondary"
+      data-toggle="modal"
+			data-target="#botaoDesembarque"
+			onclick="chamaVooDesembarque()"
+    >
+      Desembarque
+    </button>
+							</div>
+							<div class="col">
 								<button type="submit" class="btn btn-danger" style="float: right;" style="" formaction="<?php echo URLROOT; ?>/voos/delete/<?php echo $data['id']; ?>">Apaga <i class="fa fa-trash"></i></button>
 							</div>
 						</div>									
@@ -246,4 +270,120 @@
 							</div>
 						</div>
 					</div>
+
+	<!-- Modal DESEMBARQUE DE PESSOAL -->
+	<div
+      class="modal fade"
+      id="botaoDesembarque"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel2">
+              Tripulantes Desembarcando no Voo
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul id="listaDesembarque"></ul>
+            <input
+              id="desembarqueAutoComplete"
+              type="search"
+              dir="ltr"
+              spellcheck="false"
+              autocorrect="off"
+              autocomplete="off"
+              autocapitalize="off"
+              class="form-control"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+							data-dismiss="modal"
+							onclick="limparPessoal()"
+            >
+              Sair
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onClick="desembarca()"
+            >
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+		
+			<!-- Modal EMBARQUE DE PESSOAL -->
+			<div
+      class="modal fade"
+      id="botaoEmbarque"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Tripulantes Embarcando no Voo
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul id="listaEmbarque"></ul>
+            <input
+              id="embarqueAutoComplete"
+              type="search"
+              dir="ltr"
+              spellcheck="false"
+              autocorrect="off"
+              autocomplete="off"
+              autocapitalize="off"
+              class="form-control"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+							data-dismiss="modal"
+							onclick="limparPessoal()"
+            >
+              Sair
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onClick="embarca()"
+    
+            >
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+		</div>
+		
 <?php require APPROOT . '/views/inc/footer.php'; ?>

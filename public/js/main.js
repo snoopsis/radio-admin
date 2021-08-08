@@ -165,4 +165,166 @@ const filtra = async () => {
   }
 };
 
-filtra();
+if (window.location.pathname === "/voos") {
+  filtra();
+}
+
+// ### INICIO EMBARQUE E DESEMBARQUE ###
+
+var pessoalDoVoo = [];
+var nomesPessoal = [];
+
+const chamaNomes = async () => {
+  const response = await axios("https://api.migueldias.net/buzios/crewnames");
+  nomesPessoal.push(response.data);
+
+  const embarqueJS = new autoComplete({
+    selector: "#embarqueAutoComplete",
+    placeHolder: "Nome...",
+    data: {
+      src: response.data.map(i => i.name),
+      cache: true
+    },
+    resultItem: {
+      highlight: true
+    },
+    events: {
+      input: {
+        selection: event => {
+          const selection = event.detail.selection.value;
+          embarqueJS.input.value = selection;
+        }
+      }
+    }
+  });
+
+  const desembarqueJS = new autoComplete({
+    selector: "#desembarqueAutoComplete",
+    placeHolder: "Nome...",
+    data: {
+      src: response.data.map(i => i.name),
+      cache: true
+    },
+    resultItem: {
+      highlight: true
+    },
+    events: {
+      input: {
+        selection: event => {
+          const selection = event.detail.selection.value;
+          desembarqueJS.input.value = selection;
+        }
+      }
+    }
+  });
+};
+
+if (document.getElementById("datatriger").value.length !== 0) {
+  chamaNomes();
+}
+
+const embarca = async () => {
+  const nome = document.getElementById("embarqueAutoComplete").value;
+  pessoalDoVoo.push(nome);
+
+  const tripulante = await nomesPessoal[0].filter(i => i.name === nome);
+
+  await axios.post("https://api.migueldias.net/buzios/embarque", {
+    voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0],
+    crew_id: tripulante[0].id
+  });
+
+  var html = "";
+  var lista = document.getElementById("listaEmbarque");
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDoVoo.length; x++) {
+    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+const desembarca = async () => {
+  const nome = document.getElementById("desembarqueAutoComplete").value;
+  pessoalDoVoo.push(nome);
+
+  const tripulante = await nomesPessoal[0].filter(i => i.name === nome);
+
+  await axios.post("https://api.migueldias.net/buzios/desembarque", {
+    voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0],
+    crew_id: tripulante[0].id
+  });
+
+  var html = "";
+  var lista = document.getElementById("listaDesembarque");
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDoVoo.length; x++) {
+    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+const chamaVooEmbarque = async () => {
+  const res = await axios.post(
+    "https://api.migueldias.net/buzios/vooembarque",
+    {
+      voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0]
+    }
+  );
+
+  for (i = 0; i < res.data.length; i++) {
+    pessoalDoVoo.push(res.data[i].name);
+  }
+
+  console.log(pessoalDoVoo);
+
+  var html = "";
+  var lista = document.getElementById("listaEmbarque");
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDoVoo.length; x++) {
+    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+const chamaVooDesembarque = async () => {
+  const res = await axios.post(
+    "https://api.migueldias.net/buzios/voodesembarque",
+    {
+      voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0]
+    }
+  );
+
+  for (i = 0; i < res.data.length; i++) {
+    pessoalDoVoo.push(res.data[i].name);
+  }
+
+  var html = "";
+  var lista = document.getElementById("listaDesembarque");
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDoVoo.length; x++) {
+    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+function limparPessoal() {
+  pessoalDoVoo = [];
+}
+
+// ### FIM EMBARQUE E DESEMBARQUE ###
