@@ -9,7 +9,7 @@
                 <div class="input-group mb-3">
                 <div class="autoComplete_wrapper">
             <input
-        id="autoComplete"
+        id="contatosNames"
         type="search"
         dir="ltr"
         spellcheck="false"

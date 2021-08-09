@@ -219,9 +219,7 @@ const chamaNomes = async () => {
   });
 };
 
-if (document.getElementById("datatriger").value.length !== 0) {
-  chamaNomes();
-}
+chamaNomes();
 
 const embarca = async () => {
   const nome = document.getElementById("embarqueAutoComplete").value;
@@ -328,3 +326,79 @@ function limparPessoal() {
 }
 
 // ### FIM EMBARQUE E DESEMBARQUE ###
+
+// ### INICIO CREW AUTOCOMPLETE
+
+const crewNomes = () => {
+  // Make a request for a user with a given ID
+  axios
+    .get("https://api.migueldias.net/buzios/crewnames")
+    .then(function(crew) {
+      // handle success
+      const crewJS = new autoComplete({
+        selector: "#crewNames",
+        placeHolder: "Nome...",
+        data: {
+          src: crew.data.map(i => i.name),
+          cache: true
+        },
+        resultItem: {
+          highlight: true
+        },
+        events: {
+          input: {
+            selection: event => {
+              const selection = event.detail.selection.value;
+              crewJS.input.value = selection;
+            }
+          }
+        }
+      });
+    })
+    .catch(function(error) {
+      // handle error
+      console.log(error);
+    });
+};
+
+crewNomes();
+
+// FIM CREW AUTOCOMPLETE ###
+
+// ### INICIO CONTATOS AUTOCOMPLETE
+
+const telefonesNames = () => {
+  // Make a request for a user with a given ID
+  axios
+    .get("https://api.migueldias.net/buzios/getunidades")
+    .then(function(unidades) {
+      // handle success
+      const unidadesJS = new autoComplete({
+        selector: "#contatosNames",
+        placeHolder: "Nome...",
+        data: {
+          src: unidades.data,
+          cache: true
+        },
+        resultItem: {
+          highlight: true
+        },
+        events: {
+          input: {
+            selection: event => {
+              const selection = event.detail.selection.value;
+              unidadesJS.input.value = selection;
+            }
+          }
+        }
+      });
+    })
+    .catch(function(error) {
+      // handle error
+      console.log(error);
+    });
+};
+
+telefonesNames();
+
+// FIM CONTATOS AUTOCOMPLETE ###

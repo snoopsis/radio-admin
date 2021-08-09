@@ -1,6 +1,28 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="row">
 <div class="col">
+							 <!-- Botao de embarque -->
+    <button
+      type="button"
+      class="btn btn-primary mt-2"
+      data-toggle="modal"
+			data-target="#botaoEmbarque"
+			onclick="chamaVooEmbarque()"
+    >
+      Embarque
+		</button>
+		<button
+      type="button"
+      class="btn btn-secondary mt-2 ml-1"
+      data-toggle="modal"
+			data-target="#botaoDesembarque"
+			onclick="chamaVooDesembarque()"
+    >
+      Desembarque
+    </button>
+							</div>
+						
+<div class="col">
 <a href="<?php echo URLROOT; ?>/voos" class="btn btn-primary mt-2 pull-right"><i class="fa fa-backward"></i> Voltar</a>
 </div>
 </div>
@@ -200,41 +222,17 @@
 						<div class="row">
 							<div class="col">
 								<button class="btn btn-success" type="submit" name="atualiza" formaction="<?php echo URLROOT; ?>/voos/editar/<?php echo $data['id']; ?>">Atualizar <i class="fa fa-floppy-o"></i></button>
+									<!-- Button trigger modal -->
+						<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">
+							Regresso
+						</button>
 							</div>
-							<div class="col">
-							 <!-- Botao de embarque -->
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-toggle="modal"
-			data-target="#botaoEmbarque"
-			onclick="chamaVooEmbarque()"
-    >
-      Embarque
-    </button>
-							</div>
-							<div class="col">
-							 <!-- Botao de desembarque -->
-    <button
-      type="button"
-      class="btn btn-secondary"
-      data-toggle="modal"
-			data-target="#botaoDesembarque"
-			onclick="chamaVooDesembarque()"
-    >
-      Desembarque
-    </button>
-							</div>
+					
 							<div class="col">
 								<button type="submit" class="btn btn-danger" style="float: right;" style="" formaction="<?php echo URLROOT; ?>/voos/delete/<?php echo $data['id']; ?>">Apaga <i class="fa fa-trash"></i></button>
 							</div>
 						</div>									
 				</form>
-
-									<!-- Button trigger modal -->
-						<button type="button" class="btn btn-primary btn-block mt-3 mb-3" data-toggle="modal" data-target="#exampleModal">
-							Dados de Retorno
-						</button>
 
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

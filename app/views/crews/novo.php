@@ -23,21 +23,35 @@
   <div class="form-row">
   <div class="form-group col-md-6">
     <label>Cabin</label>
-    <input type="text" class="form-control <?php echo (!empty($data['cabin_err'])) ? 'is-invalid' : ''; ?>" placeholder="Cabin" name="cabin">
+    <input id="exampleFormControlSelect1" class="form-control <?php echo (!empty($data['cabin_err'])) ? 'is-invalid' : ''; ?>" placeholder="Cabin" name="cabin">
     <span class="invalid-feedback"><?php echo $data['cabin_err']; ?>
   </div>
   <div class="form-group col-md-6">
     <label>Nacionalidade:</label>
-    <input type="text" class="form-control <?php echo (!empty($data['country_err'])) ? 'is-invalid' : ''; ?>" placeholder="Nacionalidade" name="country">
+    <select type="text" class="form-control <?php echo (!empty($data['country_err'])) ? 'is-invalid' : ''; ?>" placeholder="Nacionalidade" name="country">
     <span class="invalid-feedback"><?php echo $data['country_err']; ?>
+    <option value="BRA">BRASIL</option>
+      <option value="NOR">NORUEGA</option>
+      <option value="FRA">FRANCA</option>
+      <option value="ENG">INGLATERRA</option>
+      <option value="POR">PORTUGUES</option>
+      <option value="POL">POLONES</option>
+</select>
   </div>
   </div>
 
   <div class="form-row">
   <div class="form-group col-md-6">
     <label>Empresa</label>
-    <input type="text" class="form-control <?php echo (!empty($data['company_err'])) ? 'is-invalid' : ''; ?>" placeholder="Empresa" name="company">
+    <select id="exampleFormControlSelect1" class="form-control <?php echo (!empty($data['company_err'])) ? 'is-invalid' : ''; ?>" placeholder="Empresa" name="company">
     <span class="invalid-feedback"><?php echo $data['company_err']; ?>
+    <option value="DOF">DOF</option>
+      <option value="TechnipFMC">TechnipFMC</option>
+      <option value="UNIFLEX">UNIFLEX</option>
+      <option value="Ext Company">Ext Company</option>
+      <option value="EQSB">EQSB</option>
+      <option value="Petrobras">Petrobras</option>
+</select>
   </div>
   <div class="form-group col-md-6">
     <label>Rank:</label>
