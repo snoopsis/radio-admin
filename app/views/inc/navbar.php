@@ -12,7 +12,7 @@
 			</button>
        
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
+				<ul class="navbar-nav mr-auto" style="font-weight: 650;">
 				<?php if($_SESSION['user_id'] == 0) : ?>
 					<li class="nav-item">
 						<a class="nav-link" href="<?php echo URLROOT; ?>">INICIO</a>

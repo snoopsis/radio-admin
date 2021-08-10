@@ -46,8 +46,6 @@
       <th scope="col">Sispat</th>
       <th scope="col">Cpf</th>
       <th scope="col">DOB</th>
-      <th scope="col">Embarque</th>
-      <th scope="col">Desembarque</th>
     </tr>
   </thead>
   <tbody>
@@ -61,8 +59,6 @@
       <td><?php echo $crew->sispat; ?></td>
       <td><?php echo $crew->cpf; ?></td>
       <td><?php echo $crew->dob; ?></td>
-      <td><?php echo $crew->embarque; ?></td>
-      <td><?php echo $crew->desembarque; ?></td>
       <td><a href="<?php echo URLROOT; ?>/crews/editar/<?php echo $crew->id; ?>"><button class="btn btn-success"><i class="fa fa-pencil"></i></button></a></td>
     </tr>
     <?php endforeach; ?> 

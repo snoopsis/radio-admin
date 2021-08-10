@@ -221,13 +221,13 @@ const chamaNomes = async () => {
 
 chamaNomes();
 
+// Chama os nomes do pessoal que esta embarcando
 const embarca = async () => {
   const nome = document.getElementById("embarqueAutoComplete").value;
-  pessoalDoVoo.push(nome);
 
   const tripulante = await nomesPessoal[0].filter(i => i.name === nome);
 
-  await axios.post("https://api.migueldias.net/buzios/embarque", {
+  const res = await axios.post("https://api.migueldias.net/buzios/embarque", {
     voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0],
     crew_id: tripulante[0].id
   });
@@ -236,8 +236,13 @@ const embarca = async () => {
   var lista = document.getElementById("listaEmbarque");
   lista.innerHTML = "";
 
+  pessoalDoVoo.push({ nome: nome, id: res.data.insertId });
+
   for (x = 0; x < pessoalDoVoo.length; x++) {
-    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+    html += `<tr>`;
+    html += `<td>${pessoalDoVoo[x].nome}</td>`;
+    html += `<td style="color: red;"><i onclick="remVooOn(${pessoalDoVoo[x].id})" class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
+    html += `</tr>`;
   }
 
   if (lista) {
@@ -245,23 +250,31 @@ const embarca = async () => {
   }
 };
 
+// Chama os nomes do pessoal que esta desembarcando
 const desembarca = async () => {
   const nome = document.getElementById("desembarqueAutoComplete").value;
-  pessoalDoVoo.push(nome);
 
   const tripulante = await nomesPessoal[0].filter(i => i.name === nome);
 
-  await axios.post("https://api.migueldias.net/buzios/desembarque", {
-    voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0],
-    crew_id: tripulante[0].id
-  });
+  const res = await axios.post(
+    "https://api.migueldias.net/buzios/desembarque",
+    {
+      voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0],
+      crew_id: tripulante[0].id
+    }
+  );
+
+  pessoalDoVoo.push({ nome: nome, id: res.data.insertId });
 
   var html = "";
   var lista = document.getElementById("listaDesembarque");
   lista.innerHTML = "";
 
   for (x = 0; x < pessoalDoVoo.length; x++) {
-    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+    html += `<tr>`;
+    html += `<td>${pessoalDoVoo[x].nome}</td>`;
+    html += `<td style="color: red;"><i onclick="remVooOff(${pessoalDoVoo[x].id})" class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
+    html += `</tr>`;
   }
 
   if (lista) {
@@ -269,6 +282,7 @@ const desembarca = async () => {
   }
 };
 
+// Trabalha com a lista de pessoal embarcando
 const chamaVooEmbarque = async () => {
   const res = await axios.post(
     "https://api.migueldias.net/buzios/vooembarque",
@@ -278,17 +292,18 @@ const chamaVooEmbarque = async () => {
   );
 
   for (i = 0; i < res.data.length; i++) {
-    pessoalDoVoo.push(res.data[i].name);
+    pessoalDoVoo.push({ nome: res.data[i].name, id: res.data[i].id });
   }
-
-  console.log(pessoalDoVoo);
 
   var html = "";
   var lista = document.getElementById("listaEmbarque");
   lista.innerHTML = "";
 
   for (x = 0; x < pessoalDoVoo.length; x++) {
-    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+    html += `<tr>`;
+    html += `<td>${pessoalDoVoo[x].nome}</td>`;
+    html += `<td style="color: red;"><i onclick="remVooOn(${pessoalDoVoo[x].id})"class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
+    html += `</tr>`;
   }
 
   if (lista) {
@@ -296,6 +311,7 @@ const chamaVooEmbarque = async () => {
   }
 };
 
+// Trabalha com a lista de pessoal desembarcando
 const chamaVooDesembarque = async () => {
   const res = await axios.post(
     "https://api.migueldias.net/buzios/voodesembarque",
@@ -305,7 +321,7 @@ const chamaVooDesembarque = async () => {
   );
 
   for (i = 0; i < res.data.length; i++) {
-    pessoalDoVoo.push(res.data[i].name);
+    pessoalDoVoo.push({ nome: res.data[i].name, id: res.data[i].id });
   }
 
   var html = "";
@@ -313,7 +329,10 @@ const chamaVooDesembarque = async () => {
   lista.innerHTML = "";
 
   for (x = 0; x < pessoalDoVoo.length; x++) {
-    html += `<li style="list-style-type: none;">${pessoalDoVoo[x]}</li>`;
+    html += `<tr>`;
+    html += `<td>${pessoalDoVoo[x].nome}</td>`;
+    html += `<td style="color: red;"><i onclick="remVooOff(${pessoalDoVoo[x].id})" class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
+    html += `</tr>`;
   }
 
   if (lista) {
@@ -361,7 +380,12 @@ const crewNomes = () => {
     });
 };
 
-crewNomes();
+if (
+  window.location.pathname === "/crews" ||
+  window.location.pathname === "/crews/busca"
+) {
+  crewNomes();
+}
 
 // FIM CREW AUTOCOMPLETE ###
 
@@ -399,6 +423,76 @@ const telefonesNames = () => {
     });
 };
 
-telefonesNames();
+if (
+  window.location.pathname === "/contatos" ||
+  window.location.pathname === "/contatos/busca"
+) {
+  telefonesNames();
+}
 
 // FIM CONTATOS AUTOCOMPLETE ###
+
+// ### Funcao para remover tripulante desembarcando no voo
+
+const remVooOff = id => {
+  axios.post("https://api.migueldias.net/buzios/vooremoveoff", {
+    id: id
+  });
+  const res = pessoalDoVoo.filter(function(value, index, arr) {
+    return value.id !== id;
+  });
+
+  pessoalDoVoo = [];
+
+  pessoalDoVoo = res;
+
+  var html = "";
+  var lista = document.getElementById("listaDesembarque");
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDoVoo.length; x++) {
+    html += `<tr>`;
+    html += `<td>${pessoalDoVoo[x].nome}</td>`;
+    html += `<td style="color: red;"><i onclick="remVooOn(${pessoalDoVoo[x].id})"class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
+    html += `</tr>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+// Funcao para remover tripulante embarcando no voo ###
+
+// ### Funcao para remover tripulante desembarcando no voo
+
+const remVooOn = id => {
+  axios.post("https://api.migueldias.net/buzios/vooremoveon", {
+    id: id
+  });
+
+  const res = pessoalDoVoo.filter(function(value, index, arr) {
+    return value.id !== id;
+  });
+
+  pessoalDoVoo = [];
+
+  pessoalDoVoo = res;
+
+  var html = "";
+  var lista = document.getElementById("listaEmbarque");
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDoVoo.length; x++) {
+    html += `<tr>`;
+    html += `<td>${pessoalDoVoo[x].nome}</td>`;
+    html += `<td style="color: red;"><i onclick="remVooOn(${pessoalDoVoo[x].id})"class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
+    html += `</tr>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+// Funcao para remover tripulante embarcando no voo ###

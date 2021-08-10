@@ -287,13 +287,25 @@
               type="button"
               class="close"
               data-dismiss="modal"
-              aria-label="Close"
+							aria-label="Close"
+							onclick="limparPessoal()"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <ul id="listaDesembarque"></ul>
+						<!-- <ul id="listaDesembarque"></ul> -->
+						<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody id="listaDesembarque">
+  
+  </tbody>
+</table>
             <input
               id="desembarqueAutoComplete"
               type="search"
@@ -344,13 +356,25 @@
               type="button"
               class="close"
               data-dismiss="modal"
-              aria-label="Close"
+							aria-label="Close"
+							onclick="limparPessoal()"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <ul id="listaEmbarque"></ul>
+						<!-- <ul id="listaEmbarque"></ul> -->
+						<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody id="listaEmbarque">
+  
+  </tbody>
+</table>
             <input
               id="embarqueAutoComplete"
               type="search"
