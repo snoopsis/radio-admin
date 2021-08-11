@@ -226,9 +226,21 @@ class Voos extends Controller{
       $busca = $this->vooModel->getvoosBusca();
 
       $data = [
-        'voos' => $busca
+        'title' => 'voos Offshore',
+        'description' => 'Listagem de voos Offshore',
+        'voos' => $voos
       ];
   
       $this->view('voos/index', $data);
+    }
+
+    public function pob(){
+  
+      $this->view('voos/pob');
+    }
+
+    public function mta(){
+  
+      $this->view('voos/mta');
     }
 }

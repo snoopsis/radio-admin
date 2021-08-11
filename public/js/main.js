@@ -496,3 +496,246 @@ const remVooOn = id => {
 };
 
 // Funcao para remover tripulante embarcando no voo ###
+
+// ## Funcao para pegar Embarque e Desembarque
+
+const paxOnOff = async voo_id => {
+  const embarques = await axios.post(
+    "https://api.migueldias.net/buzios/vooembarque",
+    {
+      voo_id: voo_id
+    }
+  );
+
+  const desembarques = await axios.post(
+    "https://api.migueldias.net/buzios/voodesembarque",
+    {
+      voo_id: voo_id
+    }
+  );
+
+  const empOnOff = empresa => {
+    const empresaEmbarque = embarques.data.filter(
+      crew => crew.company === empresa
+    );
+    const empresaDesembarque = desembarques.data.filter(
+      crew => crew.company === empresa
+    );
+
+    if (empresaEmbarque.length !== 0 && empresaDesembarque.length !== 0) {
+      return (
+        ` ${empresa}:` +
+        empresaEmbarque.length +
+        `x` +
+        empresaDesembarque.length
+      );
+    }
+
+    if (empresaEmbarque.length !== 0 && empresaDesembarque.length === 0) {
+      return (
+        ` ${empresa}:` +
+        empresaEmbarque.length +
+        `x` +
+        empresaDesembarque.length
+      );
+    }
+
+    if (empresaEmbarque.length === 0 && empresaDesembarque.length !== 0) {
+      return (
+        ` ${empresa}:` +
+        empresaEmbarque.length +
+        `x` +
+        empresaDesembarque.length
+      );
+    }
+
+    if (empresaEmbarque.length === 0 && empresaDesembarque.length === 0) {
+      return "";
+    }
+  };
+
+  var paxonoff = document.getElementById("paxonoff");
+  paxonoff.value =
+    "Troca de Turma: " +
+    embarques.data.length +
+    "x" +
+    desembarques.data.length +
+    " (" +
+    empOnOff("Ext Company") +
+    empOnOff("TechnipFMC") +
+    empOnOff("UNIFLEX") +
+    empOnOff("EQSB") +
+    empOnOff("Petrobras") +
+    empOnOff("DOF") +
+    " )";
+};
+
+// ### Chama os paxs
+
+var paxClick = document.getElementById("chamadaPax");
+if (paxClick !== null) {
+  paxClick.addEventListener("click", () => {
+    paxOnOff(window.location.pathname.match(/([1-9][0-9]*)/)[0]);
+  });
+}
+
+// Chama os paxs ###
+
+// Variaveis Globais:
+var pessoalEmbarcando = [];
+var pessoalDesembarcando = [];
+
+// Trabalha com a lista de pessoal embarcando
+const pobDeEmbarque = async () => {
+  const res = await axios.post(
+    "https://api.migueldias.net/buzios/vooembarque",
+    {
+      voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0]
+    }
+  );
+
+  for (i = 0; i < res.data.length; i++) {
+    pessoalEmbarcando.push({
+      nome: res.data[i].name,
+      cabin: res.data[i].cabin,
+      funcao: res.data[i].funcao,
+      country: res.data[i].country,
+      company: res.data[i].company,
+      sispat: res.data[i].sispat,
+      data: res.data[i].data,
+      troca_pax: res.data[i].troca_pax
+    });
+  }
+
+  var html = "";
+  var lista = document.getElementById("pobembarque");
+  document.getElementById("tagEmbarque").textContent =
+    "EMBARQUE " + pessoalEmbarcando[0].data;
+  var lista = document.getElementById("pobembarque");
+  document.getElementById("paxttinfo").textContent =
+    pessoalEmbarcando[0].troca_pax;
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalEmbarcando.length; x++) {
+    html += `<tr>`;
+    html += `<th scope="row">${pessoalEmbarcando[x].cabin}</th>`;
+    html += `<td>${pessoalEmbarcando[x].funcao}</td>`;
+    html += `<td>${pessoalEmbarcando[x].nome}</td>`;
+    html += `<td>${pessoalEmbarcando[x].country}</td>`;
+    html += `<td>${pessoalEmbarcando[x].company}</td>`;
+    html += `<td>${pessoalEmbarcando[x].sispat}</td>`;
+    html += `</tr>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+if (document.getElementById("pobDeId") !== null) {
+  pobDeEmbarque();
+}
+
+// Trabalha com a lista de pessoal desembarcando
+const pobDeDesembarque = async () => {
+  const res = await axios.post(
+    "https://api.migueldias.net/buzios/voodesembarque",
+    {
+      voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0]
+    }
+  );
+
+  for (i = 0; i < res.data.length; i++) {
+    pessoalDesembarcando.push({
+      nome: res.data[i].name,
+      cabin: res.data[i].cabin,
+      funcao: res.data[i].funcao,
+      country: res.data[i].country,
+      company: res.data[i].company,
+      sispat: res.data[i].sispat,
+      data: res.data[i].data
+    });
+  }
+
+  var html = "";
+  var lista = document.getElementById("pobdesembarque");
+  document.getElementById("tagDesembarque").textContent =
+    "DESEMBARQUE " + pessoalEmbarcando[0].data;
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDesembarcando.length; x++) {
+    html += `<tr>`;
+    html += `<th scope="row">${pessoalDesembarcando[x].cabin}</th>`;
+    html += `<td>${pessoalDesembarcando[x].funcao}</td>`;
+    html += `<td>${pessoalDesembarcando[x].nome}</td>`;
+    html += `<td>${pessoalDesembarcando[x].country}</td>`;
+    html += `<td>${pessoalDesembarcando[x].company}</td>`;
+    html += `<td>${pessoalDesembarcando[x].sispat}</td>`;
+    html += `</tr>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+if (document.getElementById("pobDeId") !== null) {
+  pessoalDesembarcando = [];
+  pessoalEmbarcando = [];
+  pobDeDesembarque();
+}
+
+const abrePobVoo = id => {
+  pessoalDesembarcando = [];
+  pessoalEmbarcando = [];
+  window.open(`https://radio.migueldias.net/voos/pob/${id}`);
+};
+
+// Trabalha com a lista MTA de pessoal desembarcando
+const mtaDeDesembarque = async () => {
+  const res = await axios.post(
+    "https://api.migueldias.net/buzios/voodesembarque",
+    {
+      voo_id: window.location.pathname.match(/([1-9][0-9]*)/)[0]
+    }
+  );
+
+  for (i = 0; i < res.data.length; i++) {
+    pessoalDesembarcando.push({
+      nome: res.data[i].name,
+      company: res.data[i].company,
+      sispat: res.data[i].sispat,
+      data: res.data[i].data
+    });
+  }
+
+  var html = "";
+  var lista = document.getElementById("pobMta");
+  document.getElementById("tagMta").textContent =
+    "MTA " + pessoalDesembarcando[0].data;
+  lista.innerHTML = "";
+
+  for (x = 0; x < pessoalDesembarcando.length; x++) {
+    html += `<tr>`;
+    html += `<th scope="row">${pessoalDesembarcando[x].nome}</th>`;
+    html += `<td>${pessoalDesembarcando[x].sispat}</td>`;
+    html += `<td>#</td>`;
+    html += `<td>#</td>`;
+    html += `<td>${pessoalDesembarcando[x].company}</td>`;
+    html += `</tr>`;
+  }
+
+  if (lista) {
+    lista.innerHTML = html;
+  }
+};
+
+if (document.getElementById("mtaDeId") !== null) {
+  pessoalDesembarcando = [];
+  mtaDeDesembarque();
+}
+
+const abreMtaVoo = id => {
+  pessoalDesembarcando = [];
+  window.open(`https://radio.migueldias.net/voos/mta/${id}`);
+};

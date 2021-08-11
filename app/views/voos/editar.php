@@ -9,7 +9,7 @@
 			data-target="#botaoEmbarque"
 			onclick="chamaVooEmbarque()"
     >
-      Embarque
+      ON
 		</button>
 		<button
       type="button"
@@ -18,7 +18,25 @@
 			data-target="#botaoDesembarque"
 			onclick="chamaVooDesembarque()"
     >
-      Desembarque
+      OFF
+		</button>
+		<button
+      type="button"
+      class="btn btn-warning mt-2 ml-1"
+      data-toggle="modal"
+			data-target="#botaoPobVoo"
+			onclick="abrePobVoo(<?php echo $data['id']; ?>)"
+    >
+      POB
+		</button>
+		<button
+      type="button"
+      class="btn btn-success mt-2 ml-1"
+      data-toggle="modal"
+			data-target="#botaoMtaVoo"
+			onclick="abreMtaVoo(<?php echo $data['id']; ?>)"
+    >
+      MTA
     </button>
 							</div>
 						
@@ -82,9 +100,9 @@
              <div class="col-md-6 mb-3">
 								<div class="input-group mb-3">
 										<div class="input-group-prepend">
-										<span class="input-group-text" id="inputGroup-sizing-default">Pax Troca</span>
+										<span class="input-group-text" id="inputGroup-sizing-default">Pax<i class="fa fa-users ml-2" id="chamadaPax"></i></span>
 										</div>
-										<input type="text" name="troca_pax" class="form-control m-input <?php echo (!empty($data['troca_pax_err'])) ? 'is-invalid' : ''; ?>" placeholder="Pax Troca" value="<?php echo $data['troca_pax']; ?>">
+										<input type="text" name="troca_pax" class="form-control m-input <?php echo (!empty($data['troca_pax_err'])) ? 'is-invalid' : ''; ?>" placeholder="Pax Troca" value="<?php echo $data['troca_pax']; ?>" id="paxonoff">
 										<span class="invalid-feedback"><?php echo $data['troca_pax_err']; ?></span>
 								 </div>
               </div>
@@ -221,15 +239,15 @@
 
 						<div class="row">
 							<div class="col">
-								<button class="btn btn-success" type="submit" name="atualiza" formaction="<?php echo URLROOT; ?>/voos/editar/<?php echo $data['id']; ?>">Atualizar <i class="fa fa-floppy-o"></i></button>
+								<button class="btn btn-success" type="submit" name="atualiza" formaction="<?php echo URLROOT; ?>/voos/editar/<?php echo $data['id']; ?>">ATUALIZA <i class="fa fa-floppy-o"></i></button>
 									<!-- Button trigger modal -->
 						<button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#exampleModal">
-							Regresso
+							REGRESSO
 						</button>
 							</div>
 					
 							<div class="col">
-								<button type="submit" class="btn btn-danger" style="float: right;" style="" formaction="<?php echo URLROOT; ?>/voos/delete/<?php echo $data['id']; ?>">Apaga <i class="fa fa-trash"></i></button>
+								<button type="submit" class="btn btn-danger" style="float: right;" style="" formaction="<?php echo URLROOT; ?>/voos/delete/<?php echo $data['id']; ?>"><i class="fa fa-trash"></i></button>
 							</div>
 						</div>									
 				</form>
@@ -248,19 +266,18 @@
 										<p>Decolagem do Skandi Buzios da Aeronave <strong> <?php if(!empty($data['prefixo'])){echo $data['prefixo'];} ?> </strong> as <strong> <?php if(!empty($data['decolagem'])){echo $data['decolagem'];} ?>.</strong>
 											<br />
 											<br />
-											<h5>Dados de Retorno Skandi Buzios:</h5>
-											<p>Procedente de: <strong> <?php if(!empty($data['procedencia'])){echo $data['procedencia'];} ?></strong></p>
+											<p>Procedente de: <strong> <?php if(!empty($data['procedencia'])){echo explode(' ',trim($data['procedencia']))[0];} ?></strong></p>
 											<p>Atendimento: <strong> <?php if(!empty($data['numero'])){echo $data['numero'];} ?></strong></p>
 											<p>Troca de Turma: <strong> <?php if(!empty($data['empresa_tt'])){echo $data['empresa_tt'];} ?></strong></p><br/>
-											<p><strong> <?php if(!empty($data['pouso'])){echo $data['pouso'];} ?></strong> Aeronave de troca de turma pousa no helideck. </p>
-											<p>Prefixo: <strong> <?php if(!empty($data['prefixo'])){echo $data['prefixo'];} ?></strong> / Troca <strong> <?php if(!empty($data['troca_pax'])){echo $data['troca_pax'];} ?></strong></p>
-											<p><strong> <?php if(!empty($data['decolagem'])){echo $data['decolagem'];} ?></strong> Aeronave de troca de turma fora do helideck.</p>
+											<p><strong> <?php if(!empty($data['pouso'])){echo $data['pouso'];} ?></strong> Aeronave <strong><?php if(!empty($data['prefixo'])){echo $data['prefixo'];} ?></strong> pousa no helideck. </p>
+											<p><strong> <?php if(!empty($data['troca_pax'])){echo $data['troca_pax'];} ?></strong></p>
+											<p><strong> <?php if(!empty($data['decolagem'])){echo $data['decolagem'];} ?></strong> Aeronave <strong><?php if(!empty($data['prefixo'])){echo $data['prefixo'];} ?></strong> fora do helideck.</p>
 											<br />
 											<p>POB: <strong> <?php if(!empty($data['retorno_pob'])){echo $data['retorno_pob'];} ?></strong></p>
-											<p>Magnetica: <strong><?php if(!empty($data['retorno_mag'])){echo $data['retorno_mag'];} ?></strong>°</p>
+											<p>Aerovia: <strong><?php if(!empty($data['retorno_mag'])){echo $data['retorno_mag'];} ?></strong>°</p>
 											<p>Altitude: <strong><?php if(!empty($data['retorno_alt'])){echo $data['retorno_alt'];} ?></strong>ft</p>
 											<p>Autonomia: <strong> <?php if(!empty($data['retorno_aut'])){echo $data['retorno_aut'];} ?></strong>h</p>
-											<p>ETA: <strong><?php if(!empty($data['retorno_eta'])){echo $data['retorno_eta'];} ?></strong>h apos a Decolagem em <strong><?php if(!empty($data['procedencia'])){echo $data['procedencia'];} ?></strong></p>
+											<p>Estima o Pouso em <strong><?php if(!empty($data['procedencia'])){echo explode(' ',trim($data['procedencia']))[0];} ?></strong> <strong><?php if(!empty($data['retorno_eta'])){echo $data['retorno_eta'];} ?></strong>h após a Decolagem.</p>
 									</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

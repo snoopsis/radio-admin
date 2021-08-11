@@ -147,7 +147,9 @@ class Contatos extends Controller{
       $busca = $this->contatoModel->getContatosBusca();
 
       $data = [
-        'contatos' => $busca
+        'title' => 'Contatos Offshore',
+        'description' => 'Listagem de Contatos Offshore',
+        'contatos' => $contatos
       ];
   
       $this->view('contatos/index', $data);

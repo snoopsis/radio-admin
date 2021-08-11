@@ -197,7 +197,9 @@ class Crews extends Controller{
       $busca = $this->crewModel->getCrewsBusca();
 
       $data = [
-        'crews' => $busca
+        'title' => 'Crew Offshore',
+        'description' => 'Listagem de Crew Offshore',
+        'crews' => $crews
       ];
   
       $this->view('crews/index', $data);
