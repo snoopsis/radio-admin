@@ -291,8 +291,26 @@ const chamaVooEmbarque = async () => {
     }
   );
 
+  // Compara as 2 propriedades do objeto
+  function compare(a, b) {
+    let comparison = 0;
+    var comparaA = a.nome;
+    var comparaB = b.nome;
+    // Converte para um numero inteiro
+    if (comparaA < comparaB) {
+      // Se existir decolagem pela tarde muda a ordem do array
+      comparison = -1;
+    } else if (comparaA > comparaB) {
+      // Se nao existir decolagens pela tarde mantem ordem inicial do array
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   for (i = 0; i < res.data.length; i++) {
-    pessoalDoVoo.push({ nome: res.data[i].name, id: res.data[i].id });
+    pessoalDoVoo
+      .sort(compare)
+      .push({ nome: res.data[i].name, id: res.data[i].id });
   }
 
   var html = "";
@@ -320,8 +338,26 @@ const chamaVooDesembarque = async () => {
     }
   );
 
+  // Compara as 2 propriedades do objeto
+  function compare(a, b) {
+    let comparison = 0;
+    var comparaA = a.nome;
+    var comparaB = b.nome;
+    // Converte para um numero inteiro
+    if (comparaA < comparaB) {
+      // Se existir decolagem pela tarde muda a ordem do array
+      comparison = -1;
+    } else if (comparaA > comparaB) {
+      // Se nao existir decolagens pela tarde mantem ordem inicial do array
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   for (i = 0; i < res.data.length; i++) {
-    pessoalDoVoo.push({ nome: res.data[i].name, id: res.data[i].id });
+    pessoalDoVoo
+      .sort(compare)
+      .push({ nome: res.data[i].name, id: res.data[i].id });
   }
 
   var html = "";
@@ -453,7 +489,7 @@ const remVooOff = id => {
   for (x = 0; x < pessoalDoVoo.length; x++) {
     html += `<tr>`;
     html += `<td>${pessoalDoVoo[x].nome}</td>`;
-    html += `<td style="color: red;"><i onclick="remVooOn(${pessoalDoVoo[x].id})"class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
+    html += `<td style="color: red;"><i onclick="remVooOff(${pessoalDoVoo[x].id})"class="fa fa-window-close fa-lg" aria-hidden="true"></i></td>`;
     html += `</tr>`;
   }
 
@@ -594,8 +630,24 @@ const pobDeEmbarque = async () => {
     }
   );
 
+  // Compara as 2 propriedades do objeto
+  function compare(a, b) {
+    let comparison = 0;
+    var comparaA = a.nome;
+    var comparaB = b.nome;
+    // Converte para um numero inteiro
+    if (comparaA < comparaB) {
+      // Se existir decolagem pela tarde muda a ordem do array
+      comparison = -1;
+    } else if (comparaA > comparaB) {
+      // Se nao existir decolagens pela tarde mantem ordem inicial do array
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   for (i = 0; i < res.data.length; i++) {
-    pessoalEmbarcando.push({
+    pessoalEmbarcando.sort(compare).push({
       nome: res.data[i].name,
       cabin: res.data[i].cabin,
       funcao: res.data[i].funcao,
@@ -645,8 +697,24 @@ const pobDeDesembarque = async () => {
     }
   );
 
+  // Compara as 2 propriedades do objeto
+  function compare(a, b) {
+    let comparison = 0;
+    var comparaA = a.nome;
+    var comparaB = b.nome;
+    // Converte para um numero inteiro
+    if (comparaA < comparaB) {
+      // Se existir decolagem pela tarde muda a ordem do array
+      comparison = -1;
+    } else if (comparaA > comparaB) {
+      // Se nao existir decolagens pela tarde mantem ordem inicial do array
+      comparison = 1;
+    }
+    return comparison;
+  }
+
   for (i = 0; i < res.data.length; i++) {
-    pessoalDesembarcando.push({
+    pessoalDesembarcando.sort(compare).push({
       nome: res.data[i].name,
       cabin: res.data[i].cabin,
       funcao: res.data[i].funcao,
@@ -680,14 +748,10 @@ const pobDeDesembarque = async () => {
 };
 
 if (document.getElementById("pobDeId") !== null) {
-  pessoalDesembarcando = [];
-  pessoalEmbarcando = [];
   pobDeDesembarque();
 }
 
 const abrePobVoo = id => {
-  pessoalDesembarcando = [];
-  pessoalEmbarcando = [];
   window.open(`https://radio.migueldias.net/voos/pob/${id}`);
 };
 
@@ -705,7 +769,13 @@ const mtaDeDesembarque = async () => {
       nome: res.data[i].name,
       company: res.data[i].company,
       sispat: res.data[i].sispat,
-      data: res.data[i].data
+      data: res.data[i].data,
+      email: res.data[i].email,
+      id: res.data[i].id,
+      horario: res.data[i].horario,
+      procedencia: res.data[i].procedencia,
+      peso_pax: res.data[i].peso_pax,
+      peso_bag: res.data[i].peso_bag
     });
   }
 
@@ -719,9 +789,11 @@ const mtaDeDesembarque = async () => {
     html += `<tr>`;
     html += `<th scope="row">${pessoalDesembarcando[x].nome}</th>`;
     html += `<td>${pessoalDesembarcando[x].sispat}</td>`;
-    html += `<td>#</td>`;
+    html += `<td><button onclick='chamadaEmail("${pessoalDesembarcando[x].nome}", "${pessoalDesembarcando[x].email}", ${pessoalDesembarcando[x].id}, "${pessoalDesembarcando[x].data}", "${pessoalDesembarcando[x].horario}", "${pessoalDesembarcando[x].procedencia}")'>#</button></td>`;
     html += `<td>#</td>`;
     html += `<td>${pessoalDesembarcando[x].company}</td>`;
+    html += `<td>${pessoalDesembarcando[x].peso_pax}</td>`;
+    html += `<td>${pessoalDesembarcando[x].peso_bag}</td>`;
     html += `</tr>`;
   }
 
@@ -738,4 +810,23 @@ if (document.getElementById("mtaDeId") !== null) {
 const abreMtaVoo = id => {
   pessoalDesembarcando = [];
   window.open(`https://radio.migueldias.net/voos/mta/${id}`);
+};
+
+const chamadaEmail = async (nome, email, id, data, horario, procedencia) => {
+  const res = await axios.post(
+    "https://api.migueldias.net/buzios/emailpesopax",
+    {
+      nome: nome,
+      email: email,
+      id: id,
+      data: data,
+      horario: horario,
+      voo: procedencia
+    }
+  );
+  if (res.status === 200) {
+    alert("Email enviado com sucesso!");
+  } else {
+    alert("O email falhou.");
+  }
 };

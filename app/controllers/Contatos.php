@@ -149,7 +149,7 @@ class Contatos extends Controller{
       $data = [
         'title' => 'Contatos Offshore',
         'description' => 'Listagem de Contatos Offshore',
-        'contatos' => $contatos
+        'contatos' => $busca
       ];
   
       $this->view('contatos/index', $data);

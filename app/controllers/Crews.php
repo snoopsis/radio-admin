@@ -199,7 +199,7 @@ class Crews extends Controller{
       $data = [
         'title' => 'Crew Offshore',
         'description' => 'Listagem de Crew Offshore',
-        'crews' => $crews
+        'crews' => $busca
       ];
   
       $this->view('crews/index', $data);

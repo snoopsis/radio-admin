@@ -15,6 +15,8 @@
               <th scope="col">ORIG</th>
               <th scope="col">DEST</th>
               <th scope="col">EMPRESA</th>
+              <th scope="col">Peso Pax</th>
+              <th scope="col">Peso Bag</th>
             </tr>
           </thead>
           <tbody id="pobMta">
