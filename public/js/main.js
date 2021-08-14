@@ -808,17 +808,27 @@ const mtaDeDesembarque = async () => {
   const pesoTotal = resPesoMalas + resPesoPassageiro;
   document.getElementById("total").textContent = pesoTotal + " KG";
 
+  const orig = pessoalDesembarcando[0].procedencia.slice(0, 4);
+
+  const dest = pessoalDesembarcando[0].procedencia.slice(7, 12);
+
   lista.innerHTML = "";
 
   for (x = 0; x < pessoalDesembarcando.length; x++) {
     html += `<tr>`;
     html += `<th scope="row">${pessoalDesembarcando[x].nome}</th>`;
     html += `<td>${pessoalDesembarcando[x].sispat}</td>`;
-    html += `<td><button onclick='chamadaEmail("${pessoalDesembarcando[x].nome}", "${pessoalDesembarcando[x].email}", ${pessoalDesembarcando[x].id}, "${pessoalDesembarcando[x].data}", "${pessoalDesembarcando[x].horario}", "${pessoalDesembarcando[x].procedencia}")'>#</button></td>`;
-    html += `<td>#</td>`;
+    html += `<td>${orig}</td>`;
+    html += `<td>${dest}</td>`;
     html += `<td>${pessoalDesembarcando[x].company}</td>`;
-    html += `<td>${pessoalDesembarcando[x].peso_pax}</td>`;
-    html += `<td>${pessoalDesembarcando[x].peso_bag}</td>`;
+    html +=
+      pessoalDesembarcando[x].peso_pax !== null
+        ? `<td>${pessoalDesembarcando[x].peso_pax}</td>`
+        : `<td><button onclick='chamadaEmail("${pessoalDesembarcando[x].nome}", "${pessoalDesembarcando[x].email}", ${pessoalDesembarcando[x].id}, "${pessoalDesembarcando[x].data}", "${pessoalDesembarcando[x].horario}", "${pessoalDesembarcando[x].procedencia}")'>PESO</button></td>`;
+    html +=
+      pessoalDesembarcando[x].peso_bag !== null
+        ? `<td>${pessoalDesembarcando[x].peso_bag}</td>`
+        : `<td><button onclick='chamadaEmail("${pessoalDesembarcando[x].nome}", "${pessoalDesembarcando[x].email}", ${pessoalDesembarcando[x].id}, "${pessoalDesembarcando[x].data}", "${pessoalDesembarcando[x].horario}", "${pessoalDesembarcando[x].procedencia}")'>PESO</button></td>`;
     html += `</tr>`;
   }
 

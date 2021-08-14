@@ -36,11 +36,10 @@
 														Procedencia:
 													</label>
 															<select class="form-control <?php echo (!empty($data['procedencia_err'])) ? 'is-invalid' : ''; ?>" id="exampleFormControlSelect1" name="procedencia">
-                               <option value="Jacarepagua">Jacarepagua</option>
-                               <option value="Cabo Frio">Cabo Frio</option>
-                               <option value="Macae">Macae</option>
-                               <option value="Vitoria">Vitoria</option>
-                               <option value="Farl S. Tome">Farol S. Tome</option>
+                               <option value="SBJR">Jacarepagua</option>
+                               <option value="SBCB">Cabo Frio</option>
+                               <option value="SBME">Macae</option>
+                               <option value="SBVT">Vitoria</option>
                               </select>
 															<span class="invalid-feedback"><?php echo $data['procedencia_err']; ?></span>
 												</div>
@@ -104,6 +103,7 @@
                                <option value="OMNI">OMNI</option>
                                <option value="CHC">CHC</option>
                                <option value="LIDER">LIDER</option>
+															 <option value="LIDER">EMAR</option>
                               </select>
 												</div>
 
