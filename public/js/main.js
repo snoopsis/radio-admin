@@ -775,14 +775,39 @@ const mtaDeDesembarque = async () => {
       horario: res.data[i].horario,
       procedencia: res.data[i].procedencia,
       peso_pax: res.data[i].peso_pax,
-      peso_bag: res.data[i].peso_bag
+      peso_bag: res.data[i].peso_bag,
+      prefixo: res.data[i].prefixo,
+      numero: res.data[i].numero,
+      empresa: res.data[i].companhiaAerea
     });
   }
 
   var html = "";
   var lista = document.getElementById("pobMta");
-  document.getElementById("tagMta").textContent =
-    "MTA " + pessoalDesembarcando[0].data;
+  document.getElementById("data-mta").textContent =
+    pessoalDesembarcando[0].data;
+  document.getElementById("roteiro-mta").textContent =
+    pessoalDesembarcando[0].procedencia;
+  document.getElementById("prefixo-mta").textContent =
+    pessoalDesembarcando[0].prefixo;
+  document.getElementById("numero-mta").textContent =
+    pessoalDesembarcando[0].numero;
+  document.getElementById("empresa-mta").textContent =
+    pessoalDesembarcando[0].empresa;
+  document.getElementById("horario-mta").textContent =
+    pessoalDesembarcando[0].horario;
+
+  const pesoMalas = res.data.map(i => i.peso_bag);
+  const resPesoMalas = pesoMalas.reduce((a, b) => a + b, 0);
+  document.getElementById("total-bag").textContent = resPesoMalas + " KG";
+
+  const pesoPassageiro = res.data.map(i => i.peso_pax);
+  const resPesoPassageiro = pesoPassageiro.reduce((a, b) => a + b, 0);
+  document.getElementById("total-pax").textContent = resPesoPassageiro + " KG";
+
+  const pesoTotal = resPesoMalas + resPesoPassageiro;
+  document.getElementById("total").textContent = pesoTotal + " KG";
+
   lista.innerHTML = "";
 
   for (x = 0; x < pessoalDesembarcando.length; x++) {
