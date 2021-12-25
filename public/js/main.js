@@ -808,9 +808,9 @@ const mtaDeDesembarque = async () => {
   const pesoTotal = resPesoMalas + resPesoPassageiro;
   document.getElementById("total").textContent = pesoTotal + " KG";
 
-  const orig = pessoalDesembarcando[0].procedencia.slice(0, 4);
+  const dest = pessoalDesembarcando[0].procedencia.slice(0, 11);
 
-  const dest = pessoalDesembarcando[0].procedencia.slice(7, 12);
+  const orig = pessoalDesembarcando[0].procedencia.slice(14, 18);
 
   lista.innerHTML = "";
 

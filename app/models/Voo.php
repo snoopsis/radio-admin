@@ -44,7 +44,7 @@
       $this->db->bind(':obs', "*Previsto");
       $this->db->bind(':data', $data['data']);
       $this->db->bind(':horario', $data['horario']);
-      $this->db->bind(':procedencia', $data['procedencia']." -> ".$_SESSION['um']);
+      $this->db->bind(':procedencia', $data['procedencia']." / ".$_SESSION['um']);
       $this->db->bind(':empresa_tt', $data['empresa_tt']);
       $this->db->bind(':troca_pax', $data['troca_pax']);
       // $this->db->bind(':numero', $data['numero']);
