@@ -1,3 +1,50 @@
+// Funcao para determinar quantos minutos para chegar na unidade
+if (window.location.pathname.match("/voos/editar/")) {
+  function calcularMinutosETA() {
+    var eta = document.getElementById("eta").value;
+    var horaAtual = `${moment()
+      .add(-60, "minutes")
+      .format("HH")}:${moment()
+      .add(-60, "minutes")
+      .format("mm")}`;
+
+    // start time and end time
+    var startTime = moment(horaAtual, "HH:mm");
+    var endTime = moment(eta, "HH:mm");
+
+    // calculate total duration
+    var duration = moment.duration(endTime.diff(startTime));
+
+    // duration in minutes
+    var minutes = parseInt(duration.asMinutes()) % 60;
+    return minutes;
+  }
+
+  // Se existir informacao de 30 minutos fora
+  if (document.getElementById("eta").value.length > 1) {
+    // Cria um novo elemento button
+    var btn = document.createElement("button");
+    // adicona o atributo type
+    btn.setAttribute("type", "button");
+    // adiciona class
+    btn.setAttribute("class", "btn btn-danger mt-2");
+    // Cria uma funcao para atualizar a cada 3 segundos
+    function minutosVoo() {
+      // chama o calculo que minutos para pouso da funcao de cima
+      btn.textContent = calcularMinutosETA() + "m Pouso";
+    }
+    // Chama a div onde estao os botoes da pagina
+    var element = document.getElementById("botoesCima");
+    // adiciona o novo botao como filho da div dos botoes pelo ID
+    element.appendChild(btn);
+
+    // atualiza pela funcao minutosVoo o tem restante para aeronave pousar
+    setInterval(() => {
+      minutosVoo();
+    }, 3000);
+  }
+}
+
 // Pega o dia de hoje
 const today = moment().format("DD/MM/YYYY");
 

@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="row">
-<div class="col">
+<div class="col" id="botoesCima">
 							 <!-- Botao de embarque -->
     <button
       type="button"
@@ -162,7 +162,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text" id="inputGroup-sizing-default">ETA</span>
 						       </div>
-											<input type="text" name="eta" class="form-control m-input <?php echo (!empty($data['eta_err'])) ? 'is-invalid' : ''; ?>" placeholder="ETA na Unidade" value="<?php if(!empty($data['eta'])){echo $data['eta'];} ?>">
+											<input type="text" name="eta" id="eta" class="form-control m-input <?php echo (!empty($data['eta_err'])) ? 'is-invalid' : ''; ?>" placeholder="ETA na Unidade" value="<?php if(!empty($data['eta'])){echo $data['eta'];} ?>">
 											<span class="invalid-feedback"><?php echo $data['eta_err']; ?></span>
 												</div>
 												</div>
