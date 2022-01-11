@@ -21,7 +21,10 @@ if (window.location.pathname.match("/voos/editar/")) {
   }
 
   // Se existir informacao de 30 minutos fora
-  if (document.getElementById("eta").value.length > 1) {
+  if (
+    document.getElementById("eta").value.length > 1 &&
+    document.getElementById("pouso").value.length === 0
+  ) {
     // Cria um novo elemento button
     var btn = document.createElement("button");
     // adicona o atributo type
